@@ -1,0 +1,13 @@
+{
+	"pair": {
+		"start": {
+      "intro": "Voer je Pushover gebruikers en token sleutel in...",
+			"title": "Pushover toevoegen...",
+			"error": "Er is een fout opgetreden.",
+      "required": "Gebruiker sleutel is een verplicht veld.",
+      "pushoverUser": "Gebruikers sleutel",
+      "pushoverToken": "Token sleutel",
+      "saveSettings": "Opslaan"
+		}
+  }
+}

@@ -1,0 +1,13 @@
+{
+	"pair": {
+		"start": {
+      "intro": "Enter your Pushover user & token key...",
+			"title": "Adding Pushover...",
+			"error": "An error has occurred.",
+      "required": "User key is a required value.",
+      "pushoverUser": "User key",
+      "pushoverToken": "Token key",
+      "saveSettings": "Save settings"
+		}
+  }
+}

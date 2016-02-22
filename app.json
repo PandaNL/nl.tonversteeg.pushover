@@ -1,0 +1,207 @@
+{
+    "id": "nl.tonversteeg.pushover",
+    "name": {
+        "en": "Pushover Notifications"
+    },
+    "version": "0.0.1",
+    "compatibility": "0.x || 1.x",
+    "author": {
+        "name": "Ton Versteeg",
+        "email": "tonversteeg1@gmail.com"
+    },
+    "images": {
+      "large": "./assets/images/large.jpg",
+      "small": "./assets/images/small.jpg"
+    },
+    "category": "internet",
+    "description": {
+    "en": "Pushover notifications for Homey",
+    "nl": "Pushover notificatie voor Homey"
+    },
+    "drivers": [
+      {
+          "id": "pushover",
+          "name": {
+              "en": "Pushover user",
+              "nl": "Pushover gebruiker"
+          },
+          "images": {
+              "large": "drivers/pushover/assets/images/large.jpg",
+              "small": "drivers/pushover/assets/images/small.jpg"
+          },
+          "class": "pushover",
+          "capabilities": [ "" ],
+          "pair": [
+            {
+              "id": "start"
+            },
+            {
+              "id": "list_devices",
+              "template": "list_devices",
+              "navigation": {
+                  "next": "add_pushover"
+              }
+            },
+            {
+              "id": "add_pushover",
+              "template": "add_devices"
+            }
+          ]
+      }
+    ],
+    "flow": {
+        "actions": [
+        {
+            "id": "pushoverSend_normal",
+            "title": {
+                "en": "Pushover notification (Normal)",
+                "nl": "Pushover notificatie (Normaal)"
+            },
+            "args": [
+              {
+                "name": "device",
+                "type": "device",
+                "style": {
+                  "width": "50%"
+                },
+                "placeholder": {
+                  "en": "Select Pushover user",
+                  "nl": "Selecteer Pushover gebruiker"
+                }
+              },
+              {
+                  "name":"pushoverMessage_normal",
+                  "type":"text",
+                  "placeholder":{
+                     "en":"Message",
+                     "nl":"Bericht"
+                  }
+               }
+            ]
+        },
+        {
+            "id": "pushoverSend_lowest",
+            "title": {
+                "en": "Pushover notification (Lowest)",
+                "nl": "Pushover notificatie (Laagst)"
+            },
+            "args": [
+              {
+                "name": "device",
+                "type": "device",
+                "style": {
+                  "width": "50%"
+                },
+                "placeholder": {
+                  "en": "Select Pushover user",
+                  "nl": "Selecteer Pushover gebruiker"
+                }
+              },
+              {
+                  "name":"pushoverMessage_lowest",
+                  "type":"text",
+                  "placeholder":{
+                     "en":"Message",
+                     "nl":"Bericht"
+                  }
+               }
+            ]
+        },
+        {
+            "id": "pushoverSend_low",
+            "title": {
+                "en": "Pushover notification (Low)",
+                "nl": "Pushover notificatie (Laag)"
+            },
+            "args": [
+              {
+                "name": "device",
+                "type": "device",
+                "style": {
+                  "width": "50%"
+                },
+                "placeholder": {
+                  "en": "Select Pushover user",
+                  "nl": "Selecteer Pushover gebruiker"
+                }
+              },
+              {
+                  "name":"pushoverMessage_low",
+                  "type":"text",
+                  "placeholder":{
+                     "en":"Message",
+                     "nl":"Bericht"
+                  }
+               }
+            ]
+        },
+        {
+            "id": "pushoverSend_high",
+            "title": {
+                "en": "Pushover notification (High)",
+                "nl": "Pushover notificatie (Hoog)"
+            },
+            "args": [
+              {
+                "name": "device",
+                "type": "device",
+                "style": {
+                  "width": "50%"
+                },
+                "placeholder": {
+                  "en": "Select Pushover user",
+                  "nl": "Selecteer Pushover gebruiker"
+                }
+              },
+              {
+                  "name":"pushoverMessage_high",
+                  "type":"text",
+                  "placeholder":{
+                     "en":"Message",
+                     "nl":"Bericht"
+                  }
+               }
+            ]
+        },
+        {
+            "id": "pushoverSend_normal_device",
+            "title": {
+                "en": "Pushover notification (Device)",
+                "nl": "Pushover notificatie (Apparaat)"
+            },
+            "args": [
+              {
+                "name": "device",
+                "type": "device",
+                "style": {
+                  "width": "50%"
+                },
+                "placeholder": {
+                  "en": "Select Pushover user",
+                  "nl": "Selecteer Pushover gebruiker"
+                }
+              },
+              {
+                  "name":"pushoverMessage_normal_device",
+                  "type":"text",
+                  "placeholder":{
+                     "en":"Device name",
+                     "nl":"Apparaat naam"
+                  }
+            	},
+            	{
+                  "name":"pushoverMessage_normal_message",
+                  "type":"text",
+                  "placeholder":{
+                     "en":"Message",
+                     "nl":"Bericht"
+                  }
+               }
+            ]
+        }
+      ]
+    },
+    "dependencies": {
+    		"pushover-notifications": "*"
+    }
+}
