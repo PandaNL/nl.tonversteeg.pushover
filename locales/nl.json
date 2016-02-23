@@ -1,13 +1,15 @@
 {
-	"pair": {
-		"start": {
-      "intro": "Voer je Pushover gebruikers en token sleutel in...",
-			"title": "Pushover toevoegen...",
-			"error": "Er is een fout opgetreden.",
-      "required": "Gebruiker sleutel is een verplicht veld.",
-      "pushoverUser": "Gebruikers sleutel",
-      "pushoverToken": "Token sleutel",
-      "saveSettings": "Opslaan"
-		}
+	"settings": {
+		"title": "Voer Pushover instellingen in.",
+		"intro": "Voer al je instellingen in voor de Pushover service.",
+		"tutorial": "Ga naar pushover.net om je gebruikers sleutel en een app api sleutel voor Homey aan te maken",
+		"error": "Er heeft zich een fout voorgedaan.",
+      	"pushoverUser": "Gebruiker sleutel",
+      	"pushoverToken": "Token API sleutel",
+      	"savePushover": "Opslaan",
+		"savedPushover": "Opgeslagen",
+		"notsavedPushover": "Mislukt...",
+		"clearPushover": "Leeg",
+      	"legend": "Pushover Account"
   }
 }

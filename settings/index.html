@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+</head>
+<body>
+
+<h1 data-i18n="settings.title"></h1>
+<p data-i18n="settings.intro"></p>
+<p data-i18n="settings.tutorial"></p>
+
+<fieldset>
+    <legend data-i18n="settings.legend"></legend>
+
+    <style>
+      .form_label {
+        width: 100px !important;
+        display: block !important;
+        margin-right: 20px;
+      }
+
+      .form_input {
+        width: 250px !important;
+        display: block !important;
+      }
+
+      select {
+        padding: .5em .75em;
+        vertical-align: middle;
+        font-size: 12px;
+        font-family: inherit;
+        font-weight: inherit;
+        border: 1px solid #aaa;
+        border-radius: 2px;
+        width:270px !important;
+      }
+
+      button {
+        margin-right:15px;
+      }
+    </style>
+
+
+    <div class="field row">
+        <label class="form_label" for="pushover_user" data-i18n="settings.pushoverUser"></label>
+        <input class="form_input" id="pushover_user" type="text" value="" />
+    </div>
+    <div class="field row">
+        <label class="form_label"  for="pushover_token" data-i18n="settings.pushoverToken"></label>
+        <input class="form_input" id="pushover_token" type="text" value="" />
+    </div>
+    
+
+    <button id="savePushover" class="left" data-i18n="settings.savePushover" onclick="savePushover()"></button>
+    <button id="clearPushover" class="left" data-i18n="settings.clearPushover" onclick="clearPushoverSettings()"></button>
+
+</fieldset>
+
+
+
+<script type="text/javascript">
+
+    var currentPushoverAccount;
+
+    // Initialize Homey
+    function onHomeyReady() {
+    
+
+      // Ready
+      Homey.ready();
+      
+      // Get saved settings
+      Homey.get("pushoveraccount", function (err, value) {
+        if (value != null) {
+
+			// Set current accounts
+			currentPushoverAccount = value;
+	
+         	document.getElementById('pushover_user').value = currentPushoverAccount['user'];
+      		document.getElementById('pushover_token').value = currentPushoverAccount['token'];
+
+        } else {
+
+
+        }
+      });
+    }
+
+    function clearPushoverSettings() {
+
+      document.getElementById('pushover_user').value = '';
+      document.getElementById('pushover_token').value = '';
+
+    }
+
+
+    // Save updated settings
+    function savePushover() {
+
+      
+		// Build array
+        currentPushoverAccount = {
+          'user': document.getElementById('pushover_user').value,
+          'token': document.getElementById('pushover_token').value
+        };
+
+        // Show clear
+        $('#clearPushover').css('display', 'block');
+
+
+      // Update settings
+      Homey.set("pushoveraccount", currentPushoverAccount, function (err) {
+          if (err) {
+              // Display failed registration
+              document.getElementById('savePushover').style['background-color'] = 'lightcoral';
+              document.getElementById('savePushover').style['color'] = 'black';
+              document.getElementById('savePushover').innerHTML = __("settings.notsavedPushover");
+          }
+      });
+
+      // Display successful registration
+      document.getElementById('savePushover').style['background-color'] = 'lightgreen';
+      document.getElementById('savePushover').style['color'] = 'white';
+      document.getElementById('savePushover').innerHTML = __("settings.savePushover");
+
+      setTimeout(function () {
+          // Reset button
+          document.getElementById('savePushover').style['background-color'] = '';
+          document.getElementById('savePushover').style['color'] = 'black';
+          document.getElementById('savePushover').innerHTML = __("settings.savePushover");
+      }, 3000);
+
+      onHomeyReady();
+
+    }
+</script>
+
+</body>
+</html>
