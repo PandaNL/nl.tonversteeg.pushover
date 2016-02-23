@@ -18,6 +18,8 @@
     "en": "Pushover notifications for Homey",
     "nl": "Pushover notificatie voor Homey"
     },
+    "permissions": ["homey:manager:ledring"
+    ],
     "flow": {
         "actions": [
         {

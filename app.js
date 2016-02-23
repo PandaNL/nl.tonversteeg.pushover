@@ -63,6 +63,9 @@ Homey.manager('flow').on('action.pushoverSend_normal_device', function( callback
 
 // Send notification with parameters
 function pushoverSend ( pUser, pToken , pMessage, pPriority) {
+
+	if (pToken != ""){
+	
 	var p = new push( {
 		user: pUser,
 		token: pToken,
@@ -79,14 +82,20 @@ function pushoverSend ( pUser, pToken , pMessage, pPriority) {
 	p.send( msg, function( err, result ) {
 		if ( err ) {
 			throw err;
+		} else {
+		LedAnimate("green", 3000);
 		}
-
 		Homey.log( result );
 	});
+	} else {
+		LedAnimate("red", 3000);
+	}
 }
 
 // Send notification with parameters
 function pushoverSend_device ( pUser, pToken , pMessage, pDevice, pPriority) {
+
+	if (pToken != ""){
 	var p = new push( {
 		user: pUser,
 		token: pToken,
@@ -97,17 +106,48 @@ function pushoverSend_device ( pUser, pToken , pMessage, pDevice, pPriority) {
 		// 'message' is required. All other values are optional.
 		message: pMessage,   // required
 		title: "Homey",
-		device: pPriority,
+		device: pDevice,
 		priority: pPriority
 	};
 
 	p.send( msg, function( err, result ) {
 		if ( err ) {
 			throw err;
+		} else {
+		LedAnimate("green", 3000);
 		}
-
 		Homey.log( result );
 	});
+	} else {
+		LedAnimate("red", 3000);
+	}
+}
+
+function LedAnimate(colorInput, duration) {
+Homey.manager('ledring').animate(
+    // animation name (choose from loading, pulse, progress, solid)
+    'pulse',
+    
+    // optional animation-specific options
+    {
+       
+	   color: colorInput,
+        rpm: 300 // change rotations per minute
+    },
+    
+    // priority
+    'INFORMATIVE',
+    
+    // duration
+    duration,
+    
+    // callback
+    function( err, success ) {
+        if( err ) return Homey.error(err);
+        Homey.log("Animation played succesfully");
+	
+    }
+);
 }
 
 var self = module.exports = {
