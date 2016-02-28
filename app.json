@@ -90,6 +90,6 @@
     },
     "dependencies": {
     		"pushover-notifications": "*",
-    		"http": "*"
+    		"request": "*"
     }
 }
