@@ -3,7 +3,7 @@
     "name": {
         "en": "Pushover Notifications"
     },
-    "version": "0.0.2",
+    "version": "0.0.3",
     "compatibility": "0.x || 1.x",
     "author": {
         "name": "Ton Versteeg",
@@ -23,101 +23,73 @@
     "flow": {
         "actions": [
         {
-            "id": "pushoverSend_normal",
+            "id": "pushoverSend",
             "title": {
-                "en": "Pushover notification (Normal)",
-                "nl": "Pushover notificatie (Normaal)"
+                "en": "Pushover notification",
+                "nl": "Pushover notificatie"
             },
             "args": [
               {
-                  "name":"pushoverMessage_normal",
+                  "name":"message",
                   "type":"text",
                   "placeholder":{
                      "en":"Message",
                      "nl":"Bericht"
                   }
-               }
+               },
+               {
+                "name": "priority",
+                "type": "dropdown",
+                "values": [
+                  { "id": "Normal", "label": { "en": "Normal" }},
+                  { "id": "Lowest", "label": { "en": "Lowest" }},
+                  { "id": "Low", "label": { "en": "Low" }},
+                  { "id": "High", "label": { "en": "High" }}
+                ],
+                "placeholder": { "en": "Priority" }
+              }
             ]
         },
         {
-            "id": "pushoverSend_lowest",
-            "title": {
-                "en": "Pushover notification (Lowest)",
-                "nl": "Pushover notificatie (Laagst)"
-            },
-            "args": [
-              {
-                  "name":"pushoverMessage_lowest",
-                  "type":"text",
-                  "placeholder":{
-                     "en":"Message",
-                     "nl":"Bericht"
-                  }
-               }
-            ]
-        },
-        {
-            "id": "pushoverSend_low",
-            "title": {
-                "en": "Pushover notification (Low)",
-                "nl": "Pushover notificatie (Laag)"
-            },
-            "args": [
-              {
-                  "name":"pushoverMessage_low",
-                  "type":"text",
-                  "placeholder":{
-                     "en":"Message",
-                     "nl":"Bericht"
-                  }
-               }
-            ]
-        },
-        {
-            "id": "pushoverSend_high",
-            "title": {
-                "en": "Pushover notification (High)",
-                "nl": "Pushover notificatie (Hoog)"
-            },
-            "args": [
-              {
-                  "name":"pushoverMessage_high",
-                  "type":"text",
-                  "placeholder":{
-                     "en":"Message",
-                     "nl":"Bericht"
-                  }
-               }
-            ]
-        },
-        {
-            "id": "pushoverSend_normal_device",
+            "id": "pushoverSend_device",
             "title": {
                 "en": "Pushover notification (Device)",
                 "nl": "Pushover notificatie (Apparaat)"
             },
             "args": [
               {
-                  "name":"pushoverMessage_normal_device",
-                  "type":"text",
+                  "name":"device",
+                  "type":"autocomplete",
                   "placeholder":{
                      "en":"Device name",
                      "nl":"Apparaat naam"
                   }
             	},
             	{
-                  "name":"pushoverMessage_normal_message",
+                  "name":"message",
                   "type":"text",
                   "placeholder":{
                      "en":"Message",
                      "nl":"Bericht"
                   }
-               }
+               },
+               {
+                "name": "priority",
+                "type": "dropdown",
+                "values": [
+                  { "id": "Normal", "label": { "en": "Normal" }},
+                  { "id": "Lowest", "label": { "en": "Lowest" }},
+                  { "id": "Low", "label": { "en": "Low" }},
+                  { "id": "High", "label": { "en": "High" }}
+                ],
+                "placeholder": { "en": "Priority" }
+              }
             ]
         }
       ]
     },
     "dependencies": {
-    		"pushover-notifications": "*"
+    		"pushover-notifications": "*",
+    		"http": "*"
     }
 }
