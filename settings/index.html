@@ -49,8 +49,11 @@
         <label class="form_label"  for="pushover_token" data-i18n="settings.pushoverToken"></label>
         <input class="form_input" id="pushover_token" type="text" value="" />
     </div>
-    
-
+    <input type="checkbox" id="pushover_ledring" value="pushover_ledring"> <label for="pushover_ledring">Light led ring upon sending notification?</label>
+    <br>
+    <br>
+    <label id="pushover_validation"></label>
+    <br>
     <button id="savePushover" class="left" data-i18n="settings.savePushover" onclick="savePushover()"></button>
     <button id="clearPushover" class="left" data-i18n="settings.clearPushover" onclick="clearPushoverSettings()"></button>
 
@@ -61,30 +64,53 @@
 <script type="text/javascript">
 
     var currentPushoverAccount;
+    var validationStatus;
 
     // Initialize Homey
     function onHomeyReady() {
-    
+
 
       // Ready
       Homey.ready();
-      
-      // Get saved settings
+
+      // Get saved account settings
       Homey.get("pushoveraccount", function (err, value) {
         if (value != null) {
 
 			// Set current accounts
 			currentPushoverAccount = value;
-	
+
          	document.getElementById('pushover_user').value = currentPushoverAccount['user'];
       		document.getElementById('pushover_token').value = currentPushoverAccount['token'];
-
+          if(currentPushoverAccount['ledring'] == true) {
+            document.getElementById('pushover_ledring').checked = true;
+          } else {
+            document.getElementById('pushover_ledring').checked = false;
+          }
         } else {
+        }
+
+      });
 
 
+
+    }
+
+
+    function validation () {
+      Homey.get("pushovervalidation", function (err, value){
+
+        if (value == 'Validation successful'){
+          document.getElementById('pushover_validation').innerHTML = value;
+          document.getElementById('pushover_validation').style.color = "lightgreen";
+        } else if (value == 'Validation failed, bad user/api key!'){
+          document.getElementById('pushover_validation').innerHTML = value;
+          document.getElementById('pushover_validation').style.color = "red";
         }
       });
     }
+
+
 
     function clearPushoverSettings() {
 
@@ -97,11 +123,12 @@
     // Save updated settings
     function savePushover() {
 
-      
+
 		// Build array
         currentPushoverAccount = {
           'user': document.getElementById('pushover_user').value,
-          'token': document.getElementById('pushover_token').value
+          'token': document.getElementById('pushover_token').value,
+          'ledring': document.getElementById('pushover_ledring').checked
         };
 
         // Show clear
@@ -132,6 +159,7 @@
 
       onHomeyReady();
 
+      setTimeout(validation, 2000);
     }
 </script>
 

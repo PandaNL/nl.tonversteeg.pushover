@@ -1,49 +1,59 @@
 "use strict";
 
 var push = require('pushover-notifications');
-var request = require('request');
+var http = require('http.min');
 var account = [];
+var request = [];
 var validation = null;
 var devices = null;
 var pushoverUser = null;
 var pushoverToken = null;
+var ledringPreference = false;
 
 // Get accounts from homey settings page.
 function buildPushoverArray() {
 	account = null;
 	account = Homey.manager('settings').get('pushoveraccount');
-	
+
 	if (account != null) {
-	pushoverUser = account['user'];
-	pushoverToken = account['token'];
-	
-	var url = "https://api.pushover.net/1/users/validate.json";
-	
-	request.post( url, {
-        form: {
-            'token': pushoverToken,
-            'user': pushoverUser
-        },
-        json: true
-    }, function( err, response, body ){
-        if( err ) return callback(err);
-        // If status is 200 - Ok
-        if (body.status.code == 200) {
-            // Return
-            callback(body);
-        }
-        validation = body.status;
-        devices = body.devices;
-        
-        if (validation == "1"){
-		Homey.log("Pushover - Account validated successful");
-		Homey.log("Pushover - Listing devices: " + devices);
-	} else {
-		Homey.log("Pushover - User and/or Token key invalid");
-	}
-    });
+		pushoverUser = account['user'];
+		pushoverToken = account['token'];
+		ledringPreference = account['ledring'];
+
+		var url = "https://api.pushover.net/1/users/validate.json";
+
+		http.post(url, 'token=' + pushoverToken + '&user=' + pushoverUser).then(function (result) {
+			if(result.response.statusCode == "200"){
+				request = JSON.parse(result.data);
+				devices = request.devices;
+				validation = request.status;
+
+				if (validation == "1"){
+					Homey.log("Pushover - Account validated successful");
+					Homey.log("Pushover - Listing devices: " + devices);
+					logValidation();
+				} else {
+					Homey.log("Pushover - User and/or Token key invalid");
+				}
+			} else if (result.response.statusCode == "400") {
+				Homey.log("Pushover - User and/or Token key invalid");
+				validation = "0";
+				logValidation();
+			}
+		});
+
 	} else {
 	Homey.log("Pushover - No account configured yet");
+	}
+}
+
+function logValidation() {
+	var validatedSuccess = "Validation successful"
+	var validatedFailed = "Validation failed, bad user/api key!"
+	if (validation == "1") {
+		Homey.manager('settings').set('pushovervalidation', validatedSuccess);
+	} else if (validation == "0") {
+		Homey.manager('settings').set('pushovervalidation', validatedFailed);
 	}
 }
 
@@ -91,7 +101,7 @@ function pushoverSend ( pUser, pToken , pMessage, pPriority) {
 			break;
 	}
 	if (pToken != ""){
-	
+
 	var p = new push( {
 		user: pUser,
 		token: pToken,
@@ -109,12 +119,16 @@ function pushoverSend ( pUser, pToken , pMessage, pPriority) {
 		if ( err ) {
 			throw err;
 		} else {
-		LedAnimate("green", 3000);
+			if (ledringPreference == true){
+				LedAnimate("green", 3000);
+			}
 		}
 		Homey.log( result );
 	});
 	} else {
-		LedAnimate("red", 3000);
+		if (ledringPreference == true){
+			LedAnimate("red", 3000);
+		}
 	}
 }
 
@@ -154,12 +168,16 @@ function pushoverSend_device ( pUser, pToken , pMessage, pDevice, pPriority) {
 		if ( err ) {
 			throw err;
 		} else {
-		LedAnimate("green", 3000);
+			if (ledringPreference == true){
+				LedAnimate("green", 3000);
+			}
 		}
 		Homey.log( result );
 	});
 	} else {
-		LedAnimate("red", 3000);
+		if (ledringPreference == true){
+			LedAnimate("red", 3000);
+		}
 	}
 }
 
@@ -180,24 +198,24 @@ function LedAnimate(colorInput, duration) {
 Homey.manager('ledring').animate(
     // animation name (choose from loading, pulse, progress, solid)
     'pulse',
-    
+
     // optional animation-specific options
     {
-       
+
 	   color: colorInput,
         rpm: 300 // change rotations per minute
     },
-    
+
     // priority
     'INFORMATIVE',
-    
+
     // duration
     duration,
-    
+
     // callback
     function( err, success ) {
         if( err ) return Homey.error(err);
-	
+
     }
 );
 }
@@ -210,9 +228,10 @@ var self = module.exports = {
 
 		Homey.manager('settings').on( 'set', function(settingname){
 
+			if(settingname == 'pushoveraccount') {
 			Homey.log('Pushover - Account has been changed/updated...');
 			buildPushoverArray();
-
+		}
 		});
 
 	}
