@@ -4,7 +4,7 @@ var push = require('pushover-notifications');
 var http = require('http.min');
 var account = [];
 var request = [];
-var validation = null;
+var validation;
 var devices = null;
 var pushoverUser = null;
 var pushoverToken = null;
@@ -58,6 +58,7 @@ function logValidation() {
 }
 
 Homey.manager('flow').on('action.pushoverSend', function( callback, args ){
+	  if( typeof validation == 'undefined' || validation == '0') return callback( new Error("Pushover api/token key not configured or valid under settings!") );
 		var tempUser = pushoverUser;
 		var tempToken = pushoverToken;
 		var pMessage = args.message;
@@ -67,10 +68,12 @@ Homey.manager('flow').on('action.pushoverSend', function( callback, args ){
 });
 
 Homey.manager('flow').on('action.pushoverSend_device', function( callback, args ){
+	  if( typeof validation == 'undefined' || validation == '0') return callback( new Error("Pushover api/token key not configured or valid under settings!") );
 		var tempUser = pushoverUser;
 		var tempToken = pushoverToken;
 		var pMessage = args.message;
 		var pDevice = args.device.name;
+		if( pDevice == null || pDevice == '') return callback( new Error("No devices registered on this Pushover account!") );
 		var pPriority = args.priority;
 		pushoverSend_device ( tempUser, tempToken, pMessage, pDevice, pPriority );
     callback( null, true ); // we've fired successfully
