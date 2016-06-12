@@ -62,6 +62,7 @@ Homey.manager('flow').on('action.pushoverSend', function( callback, args ){
 		var tempUser = pushoverUser;
 		var tempToken = pushoverToken;
 		var pMessage = args.message;
+		if( typeof pMessage == 'undefined' ||pMessage == null || pMessage == '') return callback( new Error("Message can not be empty") );
 		var pPriority = args.priority;
 		pushoverSend ( tempUser, tempToken, pMessage, pPriority);
     callback( null, true ); // we've fired successfully
@@ -72,6 +73,7 @@ Homey.manager('flow').on('action.pushoverSend_device', function( callback, args 
 		var tempUser = pushoverUser;
 		var tempToken = pushoverToken;
 		var pMessage = args.message;
+		if( typeof pMessage == 'undefined' ||pMessage == null || pMessage == '') return callback( new Error("Message can not be empty") );
 		var pDevice = args.device.name;
 		if( pDevice == null || pDevice == '') return callback( new Error("No devices registered on this Pushover account!") );
 		var pPriority = args.priority;
@@ -127,6 +129,10 @@ function pushoverSend ( pUser, pToken , pMessage, pPriority) {
 			}
 		}
 		Homey.log( result );
+		//Add send notification to Insights
+		Homey.manager('insights').createEntry( 'pushover_sendNotifications', 1, new Date(), function(err, success){
+        if( err ) return Homey.error(err);
+    });
 	});
 	} else {
 		if (ledringPreference == true){
@@ -223,11 +229,27 @@ Homey.manager('ledring').animate(
 );
 }
 
+// Create Insight log
+function createInsightlog() {
+	Homey.manager('insights').createLog( 'pushover_sendNotifications', {
+    label: {
+        en: 'Send Notifications'
+    },
+    type: 'number',
+    units: {
+        en: 'notifications'
+    },
+    decimals: 0
+});
+}
+
 var self = module.exports = {
 	init: function () {
 
 		// Start building Pushover accounts array
 		buildPushoverArray();
+
+		createInsightlog();
 
 		Homey.manager('settings').on( 'set', function(settingname){
 
