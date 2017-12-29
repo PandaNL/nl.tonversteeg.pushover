@@ -62,9 +62,10 @@ Homey.manager('flow').on('action.pushoverSend', function( callback, args ){
 		var tempUser = pushoverUser;
 		var tempToken = pushoverToken;
 		var pMessage = args.message;
+		var sound = args.sound;
 		if( typeof pMessage == 'undefined' ||pMessage == null || pMessage == '') return callback( new Error("Message can not be empty") );
 		var pPriority = args.priority;
-		pushoverSend ( tempUser, tempToken, pMessage, pPriority);
+		pushoverSend ( tempUser, tempToken, pMessage, pPriority, sound);
     callback( null, true ); // we've fired successfully
 });
 
@@ -73,11 +74,12 @@ Homey.manager('flow').on('action.pushoverSend_device', function( callback, args 
 		var tempUser = pushoverUser;
 		var tempToken = pushoverToken;
 		var pMessage = args.message;
+		var sound = args.sound
 		if( typeof pMessage == 'undefined' ||pMessage == null || pMessage == '') return callback( new Error("Message can not be empty") );
 		var pDevice = args.device.name;
 		if( pDevice == null || pDevice == '') return callback( new Error("No devices registered on this Pushover account!") );
 		var pPriority = args.priority;
-		pushoverSend_device ( tempUser, tempToken, pMessage, pDevice, pPriority );
+		pushoverSend_device ( tempUser, tempToken, pMessage, pDevice, pPriority, sound );
     callback( null, true ); // we've fired successfully
 });
 
@@ -87,9 +89,8 @@ Homey.manager('flow').on('action.pushoverSend_device.device.autocomplete', funct
 	callback( null, items );
 });
 
-
 // Send notification with parameters
-function pushoverSend ( pUser, pToken , pMessage, pPriority) {
+function pushoverSend ( pUser, pToken , pMessage, pPriority, sound) {
 	var priority = 0;
 	switch (pPriority) {
 		case 'Normal':
@@ -117,7 +118,8 @@ function pushoverSend ( pUser, pToken , pMessage, pPriority) {
 		// 'message' is required. All other values are optional.
 		message: pMessage,   // required
 		title: "Homey",
-		priority: priority
+		priority: priority,
+		sound: sound
 	};
 
 	p.send( msg, function( err, result ) {
@@ -142,7 +144,7 @@ function pushoverSend ( pUser, pToken , pMessage, pPriority) {
 }
 
 // Send notification with parameters
-function pushoverSend_device ( pUser, pToken , pMessage, pDevice, pPriority) {
+function pushoverSend_device ( pUser, pToken , pMessage, pDevice, pPriority, sound) {
 	var priority = 0;
 	switch (pPriority) {
 		case 'Normal':
@@ -170,7 +172,8 @@ function pushoverSend_device ( pUser, pToken , pMessage, pDevice, pPriority) {
 		message: pMessage,   // required
 		title: "Homey",
 		device: pDevice,
-		priority: priority
+		priority: priority,
+		sound: sound
 	};
 
 	p.send( msg, function( err, result ) {
