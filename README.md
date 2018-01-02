@@ -18,6 +18,10 @@ If the Pushover app is useful to you, buy me a beer!
 
 ### Changelog
 
+0.0.8
+
+- Added option to select receiving sound (contribution by Dannzak)
+
 0.0.7
 
 - Added check to see if Message isn't empty to fix app crash
