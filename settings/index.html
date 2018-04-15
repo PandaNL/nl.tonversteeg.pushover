@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
 <head>
-  <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+	<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
 </head>
 <body>
 
@@ -54,7 +55,8 @@
     <br>
     <label id="pushover_validation"></label>
     <br>
-    <button id="savePushover" class="left" data-i18n="settings.savePushover" onclick="savePushover()"></button>
+    <!--<button id="savePushover" class="left" data-i18n="settings.savePushover" onclick="savePushover()"></button>-->
+	<button type="submit" id="submit" data-i18n="settings.savePushover"></button>
     <button id="clearPushover" class="left" data-i18n="settings.clearPushover" onclick="clearPushoverSettings()"></button>
 
 </fieldset>
@@ -67,7 +69,7 @@
     var validationStatus;
 
     // Initialize Homey
-    function onHomeyReady() {
+    function onHomeyReady(Homey) {
 
 
       // Ready
@@ -92,12 +94,17 @@
 
       });
 
+	  	    $('#submit').on('click', function() {
+			savePushover(Homey);
+
+	    });
+
 
 
     }
 
 
-    function validation () {
+    function validation (Homey) {
       Homey.get("pushovervalidation", function (err, value){
 
         if (value == 'Validation successful'){
@@ -121,7 +128,7 @@
 
 
     // Save updated settings
-    function savePushover() {
+    function savePushover(Homey) {
 
 
 		// Build array
@@ -159,7 +166,7 @@
 
       onHomeyReady();
 
-      setTimeout(validation, 2000);
+      setTimeout(validation(Homey), 2000);
     }
 </script>
 

@@ -1,28 +1,38 @@
 {
     "id": "nl.tonversteeg.pushover",
+    "sdk": 2,
     "name": {
         "en": "Pushover Notifications"
     },
-    "version": "0.0.8",
-    "compatibility": "0.x || 1.x",
+    "description": {
+        "en": "Pushover Notification with Image support"
+    },
+    "category": "tools",
+    "version": "0.0.9",
+    "compatibility": ">=1.5.0",
     "author": {
         "name": "Ton Versteeg",
         "email": "tonversteeg1@gmail.com"
     },
-    "images": {
-      "large": "./assets/images/large.jpg",
-      "small": "./assets/images/small.jpg"
+    "contributors": {
+        "developers": [
+            {
+                "name": "Kevin Traa",
+                "email": "ketra90@gmail.com"
+            },
+            {
+                "name": "Dannzak"
+            }
+        ]
     },
-    "category": "internet",
-    "description": {
-    "en": "Pushover notifications for Homey",
-    "nl": "Pushover notificatie voor Homey"
+    "bugs": {
+        "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
     },
-    "permissions": ["homey:manager:ledring"
+	"permissions": ["homey:manager:ledring"
     ],
     "flow": {
         "actions": [
-        {
+          {
             "id": "pushoverSend",
             "title": {
                 "en": "Pushover notification",
@@ -52,7 +62,7 @@
                 "name": "sound",
                 "type": "dropdown",
                 "values": [
-                  { "id": "pushover", "label": { "en": "Default" }},
+                  { "id": "pushover", "label": { "en": "Pushover Default" }},
                   { "id": "bike", "label": { "en": "Bike" }},
                   { "id": "bugle", "label": { "en": "Bugle" }},
                   { "id": "cashregister", "label": { "en": "Cash Register" }},
@@ -78,6 +88,35 @@
               }
             ]
         },
+        {
+          "id": "pushoverSendImage",
+          "droptoken": "image",
+          "title": {
+              "en": "Pushover Image",
+              "nl": "Pushover Foto"
+          },
+          "args": [
+            {
+                "name":"message",
+                "type":"text",
+                "placeholder":{
+                   "en":"Message",
+                   "nl":"Bericht"
+                }
+           },
+             {
+              "name": "priority",
+              "type": "dropdown",
+              "values": [
+                { "id": "Normal", "label": { "en": "Normal" }},
+                { "id": "Lowest", "label": { "en": "Lowest" }},
+                { "id": "Low", "label": { "en": "Low" }},
+                { "id": "High", "label": { "en": "High" }}
+              ],
+              "placeholder": { "en": "Priority" }
+            }
+          ]
+      },
         {
             "id": "pushoverSend_device",
             "title": {
@@ -117,7 +156,8 @@
       ]
     },
     "dependencies": {
-    		"pushover-notifications": "*",
-    		"http.min": "*"
+    		"pushover-notification-client": "*",
+        "http.min": "*",
+        "requests": "*"
     }
 }
