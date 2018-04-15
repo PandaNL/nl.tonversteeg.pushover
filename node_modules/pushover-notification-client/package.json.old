@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "pushover-notifications",
+      "/home/ketra/nl.tonversteeg.pushover"
+    ]
+  ],
+  "_from": "pushover-notifications@latest",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/pushover-notifications",
+  "_nodeVersion": "6.12.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/pushover-notifications-1.0.0.tgz_1516041405812_0.7093274593353271"
+  },
+  "_npmUser": {
+    "email": "deftly@gmail.com",
+    "name": "qbit"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "pushover-notifications",
+    "raw": "pushover-notifications",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/pushover-notifications/-/pushover-notifications-1.0.0.tgz",
+  "_shasum": "969d30965d4dca3eba7632e30bedb04958a443da",
+  "_shrinkwrap": null,
+  "_spec": "pushover-notifications",
+  "_where": "/home/ketra/nl.tonversteeg.pushover",
+  "author": "Aaron Bieber <aaron@qbit.io>",
+  "bugs": {
+    "url": "https://github.com/qbit/node-pushover/issues"
+  },
+  "dependencies": {},
+  "description": "Pushover API for node.js",
+  "devDependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "dist": {
+    "shasum": "969d30965d4dca3eba7632e30bedb04958a443da",
+    "tarball": "https://registry.npmjs.org/pushover-notifications/-/pushover-notifications-1.0.0.tgz"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "homepage": "http://github.com/qbit/node-pushover",
+  "maintainers": [
+    "qbit <deftly@gmail.com>"
+  ],
+  "name": "pushover-notification-client",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qbit/node-pushover.git"
+  },
+  "scripts": {
+    "test": "standard && pkill tinyproxy ; tinyproxy -c test/tinyproxy.conf && set -e; for t in test/*.js; do node $t; done"
+  },
+  "version": "0.0.1",
+  "main": "index.js",
+  "keywords": [
+    "pushover",
+    "image",
+    "notification"
+  ],
+  "license": "ISC"
+}
