@@ -1,167 +1,344 @@
 {
-    "id": "nl.tonversteeg.pushover",
-    "sdk": 2,
-    "name": {
-        "en": "Pushover Notifications"
-    },
-    "description": {
-        "en": "Pushover Notification with Image support"
-    },
-    "category": "tools",
-    "version": "0.0.9",
-    "compatibility": ">=1.5.0",
-    "author": {
-        "name": "Ton Versteeg",
-        "email": "tonversteeg1@gmail.com"
-    },
-    "images": {
-        "large": "/assets/images/large.jpg",
-        "small": "/assets/images/small.jpg"
-   },
-    "contributors": {
-        "developers": [
-            {
-                "name": "Kevin Traa",
-                "email": "ketra90@gmail.com"
-            },
-            {
-                "name": "Dannzak"
-            }
-        ]
-    },
-    "bugs": {
-        "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
-    },
-	"permissions": ["homey:manager:ledring"
-    ],
-    "flow": {
-        "actions": [
+  "id": "nl.tonversteeg.pushover",
+  "sdk": 2,
+  "name": {
+    "en": "Pushover Notifications"
+  },
+  "description": {
+    "en": "Pushover Notification with Image support"
+  },
+  "category": "tools",
+  "version": "0.0.10",
+  "compatibility": ">=1.5.0",
+  "author": {
+    "name": "Ton Versteeg",
+    "email": "tonversteeg1@gmail.com"
+  },
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Kevin Traa",
+        "email": "ketra90@gmail.com"
+      },
+      {
+        "name": "Dannzak"
+      }
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
+  },
+  "permissions": [
+    "homey:manager:ledring"
+  ],
+  "flow": {
+    "actions": [
+      {
+        "id": "pushoverSend",
+        "title": {
+          "en": "Pushover notification",
+          "nl": "Pushover notificatie"
+        },
+        "args": [
           {
-            "id": "pushoverSend",
-            "title": {
-                "en": "Pushover notification",
-                "nl": "Pushover notificatie"
-            },
-            "args": [
+            "name": "message",
+            "type": "text",
+            "placeholder": {
+              "en": "Message",
+              "nl": "Bericht"
+            }
+          },
+          {
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
               {
-                  "name":"message",
-                  "type":"text",
-                  "placeholder":{
-                     "en":"Message",
-                     "nl":"Bericht"
-                  }
-               },
-               {
-                "name": "priority",
-                "type": "dropdown",
-                "values": [
-                  { "id": "Normal", "label": { "en": "Normal" }},
-                  { "id": "Lowest", "label": { "en": "Lowest" }},
-                  { "id": "Low", "label": { "en": "Low" }},
-                  { "id": "High", "label": { "en": "High" }}
-                ],
-                "placeholder": { "en": "Priority" }
+                "id": "Normal",
+                "label": {
+                  "en": "Normal"
+                }
               },
               {
-                "name": "sound",
-                "type": "dropdown",
-                "values": [
-                  { "id": "pushover", "label": { "en": "Pushover Default" }},
-                  { "id": "bike", "label": { "en": "Bike" }},
-                  { "id": "bugle", "label": { "en": "Bugle" }},
-                  { "id": "cashregister", "label": { "en": "Cash Register" }},
-                  { "id": "classical", "label": { "en": "Classical" }},
-                  { "id": "cosmic", "label": { "en": "Cosmic" }},
-                  { "id": "falling", "label": { "en": "Falling" }},
-                  { "id": "gamelan", "label": { "en": "Gamelan" }},
-                  { "id": "incoming", "label": { "en": "Incoming" }},
-                  { "id": "intermission", "label": { "en": "Intermission" }},
-                  { "id": "magic", "label": { "en": "Magic" }},
-                  { "id": "mechanical", "label": { "en": "Mechanical" }},
-                  { "id": "pianobar", "label": { "en": "Pianobar" }},
-                  { "id": "siren", "label": { "en": "Siren" }},
-                  { "id": "spacealarm", "label": { "en": "Space Alarm" }},
-                  { "id": "tugboat", "label": { "en": "Tug Boat" }},
-                  { "id": "alien", "label": { "en": "Alien Alarm (long)" }},
-                  { "id": "climb", "label": { "en": "Climb (long)" }},
-                  { "id": "persistent", "label": { "en": "Persistent (long)" }},
-                  { "id": "echo", "label": { "en": "Echo (long)" }},
-                  { "id": "updown", "label": { "en": "Up Down (long)" }},
-                  { "id": "none", "label": { "en": "None (silent)" }}
-                ]
-              }
-            ]
-        },
-        {
-          "id": "pushoverSendImage",
-          "droptoken": "image",
-          "title": {
-              "en": "Pushover Image",
-              "nl": "Pushover Foto"
-          },
-          "args": [
-            {
-                "name":"message",
-                "type":"text",
-                "placeholder":{
-                   "en":"Message",
-                   "nl":"Bericht"
+                "id": "Lowest",
+                "label": {
+                  "en": "Lowest"
                 }
-           },
-             {
-              "name": "priority",
-              "type": "dropdown",
-              "values": [
-                { "id": "Normal", "label": { "en": "Normal" }},
-                { "id": "Lowest", "label": { "en": "Lowest" }},
-                { "id": "Low", "label": { "en": "Low" }},
-                { "id": "High", "label": { "en": "High" }}
-              ],
-              "placeholder": { "en": "Priority" }
-            }
-          ]
-      },
-        {
-            "id": "pushoverSend_device",
-            "title": {
-                "en": "Pushover notification (Device)",
-                "nl": "Pushover notificatie (Apparaat)"
-            },
-            "args": [
+              },
               {
-                  "name":"device",
-                  "type":"autocomplete",
-                  "placeholder":{
-                     "en":"Device name",
-                     "nl":"Apparaat naam"
-                  }
-            	},
-            	{
-                  "name":"message",
-                  "type":"text",
-                  "placeholder":{
-                     "en":"Message",
-                     "nl":"Bericht"
-                  }
-               },
-               {
-                "name": "priority",
-                "type": "dropdown",
-                "values": [
-                  { "id": "Normal", "label": { "en": "Normal" }},
-                  { "id": "Lowest", "label": { "en": "Lowest" }},
-                  { "id": "Low", "label": { "en": "Low" }},
-                  { "id": "High", "label": { "en": "High" }}
-                ],
-                "placeholder": { "en": "Priority" }
+                "id": "Low",
+                "label": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "High",
+                "label": {
+                  "en": "High"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Priority"
+            }
+          },
+          {
+            "name": "sound",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "pushover",
+                "label": {
+                  "en": "Pushover Default"
+                }
+              },
+              {
+                "id": "bike",
+                "label": {
+                  "en": "Bike"
+                }
+              },
+              {
+                "id": "bugle",
+                "label": {
+                  "en": "Bugle"
+                }
+              },
+              {
+                "id": "cashregister",
+                "label": {
+                  "en": "Cash Register"
+                }
+              },
+              {
+                "id": "classical",
+                "label": {
+                  "en": "Classical"
+                }
+              },
+              {
+                "id": "cosmic",
+                "label": {
+                  "en": "Cosmic"
+                }
+              },
+              {
+                "id": "falling",
+                "label": {
+                  "en": "Falling"
+                }
+              },
+              {
+                "id": "gamelan",
+                "label": {
+                  "en": "Gamelan"
+                }
+              },
+              {
+                "id": "incoming",
+                "label": {
+                  "en": "Incoming"
+                }
+              },
+              {
+                "id": "intermission",
+                "label": {
+                  "en": "Intermission"
+                }
+              },
+              {
+                "id": "magic",
+                "label": {
+                  "en": "Magic"
+                }
+              },
+              {
+                "id": "mechanical",
+                "label": {
+                  "en": "Mechanical"
+                }
+              },
+              {
+                "id": "pianobar",
+                "label": {
+                  "en": "Pianobar"
+                }
+              },
+              {
+                "id": "siren",
+                "label": {
+                  "en": "Siren"
+                }
+              },
+              {
+                "id": "spacealarm",
+                "label": {
+                  "en": "Space Alarm"
+                }
+              },
+              {
+                "id": "tugboat",
+                "label": {
+                  "en": "Tug Boat"
+                }
+              },
+              {
+                "id": "alien",
+                "label": {
+                  "en": "Alien Alarm (long)"
+                }
+              },
+              {
+                "id": "climb",
+                "label": {
+                  "en": "Climb (long)"
+                }
+              },
+              {
+                "id": "persistent",
+                "label": {
+                  "en": "Persistent (long)"
+                }
+              },
+              {
+                "id": "echo",
+                "label": {
+                  "en": "Echo (long)"
+                }
+              },
+              {
+                "id": "updown",
+                "label": {
+                  "en": "Up Down (long)"
+                }
+              },
+              {
+                "id": "none",
+                "label": {
+                  "en": "None (silent)"
+                }
               }
             ]
-        }
-      ]
-    },
-    "dependencies": {
-    		"pushover-notification-client": "*",
-        "http.min": "*",
-        "requests": "*"
-    }
+          }
+        ]
+      },
+      {
+        "id": "pushoverSendImage",
+        "droptoken": "image",
+        "title": {
+          "en": "Pushover Image",
+          "nl": "Pushover Foto"
+        },
+        "args": [
+          {
+            "name": "message",
+            "type": "text",
+            "placeholder": {
+              "en": "Message",
+              "nl": "Bericht"
+            }
+          },
+          {
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "Normal",
+                "label": {
+                  "en": "Normal"
+                }
+              },
+              {
+                "id": "Lowest",
+                "label": {
+                  "en": "Lowest"
+                }
+              },
+              {
+                "id": "Low",
+                "label": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "High",
+                "label": {
+                  "en": "High"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Priority"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pushoverSend_device",
+        "title": {
+          "en": "Pushover notification (Device)",
+          "nl": "Pushover notificatie (Apparaat)"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Device name",
+              "nl": "Apparaat naam"
+            }
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "placeholder": {
+              "en": "Message",
+              "nl": "Bericht"
+            }
+          },
+          {
+            "name": "priority",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "Normal",
+                "label": {
+                  "en": "Normal"
+                }
+              },
+              {
+                "id": "Lowest",
+                "label": {
+                  "en": "Lowest"
+                }
+              },
+              {
+                "id": "Low",
+                "label": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "High",
+                "label": {
+                  "en": "High"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Priority"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "pushover-notification-client": "*",
+    "http.min": "*",
+    "requests": "*"
+  }
 }
