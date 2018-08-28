@@ -46,12 +46,12 @@ class MyApp extends Homey.App {
 				return pushoverSend_device(tempUser, tempToken, pMessage, pDevice, pPriority, sound);
 				//return Promise.resolve();
 		    })
-		    //.getArgument('to')
-	        //.registerAutocompleteListener(( query, args ) => {
-            //    let deviceSearchString = value.query;
-            //    let items = searchForDevicesByValue(deviceSearchString);
-            //    return Promise.resolve(null, items);
-            //});
+		 sendMessageDevice.getArgument('device').registerAutocompleteListener(( query, args ) => {
+                 let deviceSearchString = query;
+				 let items = searchForDevicesByValue(deviceSearchString);
+				 console.log(items)
+                 return Promise.resolve(items);
+            });
             let sendMessage = new Homey.FlowCardAction('pushoverSend');
             sendMessage
                 .register()
@@ -67,13 +67,6 @@ class MyApp extends Homey.App {
                     return pushoverSend(tempUser, tempToken, pMessage, pPriority, sound);
                     //return Promise.resolve();
                 })
-                //.getArgument('to')
-                //.registerAutocompleteListener(( query, args ) => {
-                //   let deviceSearchString = value.query;
-                //    let items = searchForDevicesByValue(deviceSearchString);
-                //    return Promise.resolve(null, items);
-                //});
-
 		let sendImage = new Homey.FlowCardAction('pushoverSendImage');
 		sendImage
 			.register()
@@ -95,10 +88,6 @@ class MyApp extends Homey.App {
 				})
 
 			})
-			//.getArgument('to')
-	        //.registerAutocompleteListener(( query, args ) => {
-	        //    return Promise.resolve(chat_ids);
-	        //});
 	}
 
 }
@@ -155,6 +144,7 @@ function pushoverSend(pUser, pToken, pMessage, pPriority, sound, image) {
 			LedAnimate("red", 3000);
 		}
 	}
+	return Promise.resolve()
 }
 
 function InsightEntry(message, date)
@@ -220,6 +210,7 @@ function pushoverSend_device(pUser, pToken, pMessage, pDevice, pPriority, sound,
 			LedAnimate("red", 3000);
 		}
 	}
+	return Promise.resolve()
 }
 
 
@@ -277,6 +268,19 @@ function buildPushoverArray() {
 	} else {
 		console.log("Pushover - No account configured yet");
 	}
+}
+function searchForDevicesByValue ( value ) {
+	var possibleDevices = devices;
+	var tempItems = [];
+	for (var i = 0; i < devices.length; i++) {
+		var tempDevice = possibleDevices[i];
+		console.log("Checking device " + tempDevice + " if equal to " + value)
+		if ( tempDevice.indexOf(value) >= 0 ) {
+			console.log("found a partial match")
+			tempItems.push({ icon: "", name: tempDevice });
+		}
+	}
+	return tempItems;
 }
 
 function logValidation() {

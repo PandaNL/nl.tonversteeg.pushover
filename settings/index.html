@@ -55,8 +55,9 @@
     <br>
     <label id="pushover_validation"></label>
     <br>
+    <button id="savePushover" class="left" data-i18n="settings.savePushover"</button>
     <!--<button id="savePushover" class="left" data-i18n="settings.savePushover" onclick="savePushover()"></button>-->
-	<button type="submit" id="submit" data-i18n="settings.savePushover"></button>
+	<!--<button type="submit" id="savePushover" data-i18n="settings.savePushover"></button>-->
     <button id="clearPushover" class="left" data-i18n="settings.clearPushover" onclick="clearPushoverSettings()"></button>
 
 </fieldset>
@@ -94,7 +95,7 @@
 
       });
 
-	  	    $('#submit').on('click', function() {
+	  	    $('#savePushover').on('click', function() {
 			savePushover(Homey);
 
 	    });
@@ -164,7 +165,7 @@
           document.getElementById('savePushover').innerHTML = __("settings.savePushover");
       }, 3000);
 
-      onHomeyReady();
+      onHomeyReady(Homey);
 
       setTimeout(validation(Homey), 2000);
     }
