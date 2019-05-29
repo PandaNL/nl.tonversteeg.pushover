@@ -18,6 +18,25 @@ If the Pushover app is useful to you, buy me a beer!
 
 ### Changelog
 
+0.0.12
+
+- Support for group notifications. Add group key under settings.
+- Additional Dutch translations
+
+0.0.11
+
+- Fixed an issue where all messages were being sent as "Normal" priority
+- Fixed an issue where the send message to device flow would not work
+- Added Notification Sound on the Image Flow Card
+- Added support for Custom Subject
+- Added support for Device Default Sound
+- Added support for Emergency Priority
+
+0.0.10
+
+- Fixed device selection in flow card
+- Added confirmation for saved settings
+
 0.0.9
 
 - Image support thanks to Kevin Traa
