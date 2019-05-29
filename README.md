@@ -18,6 +18,14 @@ If the Pushover app is useful to you, buy me a beer!
 
 ### Changelog
 
+0.0.11
+
+- Multiple fixes thanks to Veldkornet
+
+0.0.10
+
+- Device searching fix
+
 0.0.9
 
 - Image support thanks to Kevin Traa
