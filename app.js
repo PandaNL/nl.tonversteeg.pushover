@@ -38,34 +38,40 @@ class MyApp extends Homey.App {
                 let tempUser = pushoverUser;
                 let tempToken = pushoverToken;
                 let pMessage = args.message;
-                let sound = args.sound
+                let pTitle = args.title;
+                let pSound = args.sound
                 if (typeof pMessage == 'undefined' || pMessage == null || pMessage == '') return new Error("Message can not be empty");
                 let pDevice = args.device.name;
                 if (pDevice == null || pDevice == '') return new Error("No devices registered on this Pushover account!");
-                let pPriority = args.priority;
-				return pushoverSend_device(tempUser, tempToken, pMessage, pDevice, pPriority, sound);
+				let pPriority = args.priority;
+				let pRetry = args.retry;
+				let pExpire = args.expire;
+				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
 				//return Promise.resolve();
 		    })
-		 sendMessageDevice.getArgument('device').registerAutocompleteListener(( query, args ) => {
+		 	sendMessageDevice.getArgument('device').registerAutocompleteListener(( query, args ) => {
                  let deviceSearchString = query;
 				 let items = searchForDevicesByValue(deviceSearchString);
 				 console.log(items)
                  return Promise.resolve(items);
             });
-            let sendMessage = new Homey.FlowCardAction('pushoverSend');
-            sendMessage
-                .register()
-                .registerRunListener(( args, state ) => {
+        let sendMessage = new Homey.FlowCardAction('pushoverSend');
+        sendMessage
+            .register()
+            .registerRunListener(( args, state ) => {
 
-                    if (typeof validation == 'undefined' || validation == '0') return new Error("Pushover api/token key not configured or valid under settings!");
-                    let tempUser = pushoverUser;
-                    let tempToken = pushoverToken;
-                    let pMessage = args.message;
-                    let sound = args.sound;
-                    if (typeof pMessage == 'undefined' || pMessage == null || pMessage == '') return new Error("Message can not be empty");
-                    let pPriority = args.priority;
-                    return pushoverSend(tempUser, tempToken, pMessage, pPriority, sound);
-                    //return Promise.resolve();
+                if (typeof validation == 'undefined' || validation == '0') return new Error("Pushover api/token key not configured or valid under settings!");
+                let tempUser = pushoverUser;
+				let tempToken = pushoverToken;
+				let pTitle = args.title;
+                let pMessage = args.message;
+                let pSound = args.sound;
+                if (typeof pMessage == 'undefined' || pMessage == null || pMessage == '') return new Error("Message can not be empty");
+				let pPriority = args.priority;
+				let pRetry = args.retry;
+				let pExpire = args.expire;
+                return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound);
+                //return Promise.resolve();
                 })
 		let sendImage = new Homey.FlowCardAction('pushoverSendImage');
 		sendImage
@@ -74,14 +80,18 @@ class MyApp extends Homey.App {
 
                 if (typeof validation == 'undefined' || validation == '0') return callback(new Error("Pushover api/token key not configured or valid under settings!"));
                 let tempUser = pushoverUser;
-                let tempToken = pushoverToken;
-								let pMessage = args.message;
-								let pPriority = args.priority;
+				let tempToken = pushoverToken;
+				let pTitle = args.title;
+				let pMessage = args.message;
+				let pSound = args.sound;
+				let pPriority = args.priority;
+				let pRetry = args.retry;
+				let pExpire = args.expire;
                 let image = args.droptoken;
 				image.getBuffer()
 				.then( buf => {
                     //console.log(buf);
-					return pushoverSend(tempUser, tempToken, pMessage, pPriority, null, buf);
+					return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, buf);
                 })
 				.catch (function(err){
 					console.log(err)
@@ -94,7 +104,7 @@ class MyApp extends Homey.App {
 
 
 // Send notification with parameters
-function pushoverSend(pUser, pToken, pMessage, pPriority, sound, image) {
+function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, image) {
 	let priority = 0;
 	switch (pPriority) {
 		case 'Normal':
@@ -109,6 +119,9 @@ function pushoverSend(pUser, pToken, pMessage, pPriority, sound, image) {
 		case 'High':
 			priority = 1;
 			break;
+		case 'Emergency':
+			priority = 2;
+			break;
 	}
 	if (pToken != "") {
 
@@ -121,12 +134,14 @@ function pushoverSend(pUser, pToken, pMessage, pPriority, sound, image) {
 			// These values correspond to the parameters detailed on https://pushover.net/api
 			// 'message' is required. All other values are optional.
 			message: pMessage,   // required
-			title: "Homey",
+			title: pTitle,
 			priority: priority,
-			sound: sound,
+			retry: pRetry,
+			expire: pExpire,
+			sound: pSound,
 			attachment: image
 		};
-
+		// console.log(`Message: ${pMessage}, Title: ${pTitle}, Priority: ${priority}, Retry: ${pRetry}, Expire: ${pExpire}, Sound: ${pSound}"`);
 		p.send(msg, function (err, result) {
 			if (err) {
 				throw err;
@@ -160,7 +175,7 @@ function InsightEntry(message, date)
 }
 
 // Send notification with parameters
-function pushoverSend_device(pUser, pToken, pMessage, pDevice, pPriority, sound, image) {
+function pushoverSend_device(pUser, pToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound, image) {
 	let priority = 0;
 	switch (pPriority) {
 		case 'Normal':
@@ -175,6 +190,9 @@ function pushoverSend_device(pUser, pToken, pMessage, pDevice, pPriority, sound,
 		case 'High':
 			priority = 1;
 			break;
+		case 'Emergency':
+			priority = 2;
+			break;
 	}
 	if (pToken != "") {
 		let p = new push({
@@ -186,13 +204,15 @@ function pushoverSend_device(pUser, pToken, pMessage, pDevice, pPriority, sound,
 			// These values correspond to the parameters detailed on https://pushover.net/api
 			// 'message' is required. All other values are optional.
 			message: pMessage,   // required
-			title: "Homey",
+			title: pTitle,
 			device: pDevice,
 			priority: priority,
-			sound: sound,
+			retry: pRetry,
+			expire: pExpire,
+			sound: pSound,
 			attachment: image
 		};
-
+		// console.log(`Message: ${pMessage}, Title: ${pTitle}, Priority: ${priority}, Retry: ${pRetry}, Expire: ${pExpire}, Sound: ${pSound}"`);
 		p.send(msg, function (err, result) {
 			if (err) {
 				return Promise.reject(err);
