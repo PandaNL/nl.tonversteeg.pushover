@@ -8,21 +8,17 @@ let request = [];
 let validation;
 let devices = null;
 let pushoverUser = null;
+let pushoverGroup = null;
 let pushoverToken = null;
 let ledringPreference = false;
 let InsightLog = null;
 
 class MyApp extends Homey.App {
-
 	onInit() {
-
         // Start building Pushover accounts array
 		buildPushoverArray();
-
 		createInsightlog();
-
 		Homey.ManagerSettings.on('set', function (settingname) {
-
 			if (settingname == 'pushoveraccount') {
 				console.log('Pushover - Account has been changed/updated...');
 				buildPushoverArray();
@@ -61,7 +57,15 @@ class MyApp extends Homey.App {
             .registerRunListener(( args, state ) => {
 
                 if (typeof validation == 'undefined' || validation == '0') return new Error("Pushover api/token key not configured or valid under settings!");
-                let tempUser = pushoverUser;
+				let tempUser = null;
+				switch (args.target) {
+					case 'User':
+						tempUser = pushoverUser;
+						break;
+					case 'Group':
+						tempUser = pushoverGroup;
+						break;
+				}
 				let tempToken = pushoverToken;
 				let pTitle = args.title;
                 let pMessage = args.message;
@@ -79,7 +83,15 @@ class MyApp extends Homey.App {
 			.registerRunListener(( args, state) => {
 
                 if (typeof validation == 'undefined' || validation == '0') return callback(new Error("Pushover api/token key not configured or valid under settings!"));
-                let tempUser = pushoverUser;
+				let tempUser = null;
+				switch (args.target) {
+					case 'User':
+						tempUser = pushoverUser;
+						break;
+					case 'Group':
+						tempUser = pushoverGroup;
+						break;
+				}
 				let tempToken = pushoverToken;
 				let pTitle = args.title;
 				let pMessage = args.message;
@@ -96,12 +108,9 @@ class MyApp extends Homey.App {
 				.catch (function(err){
 					console.log(err)
 				})
-
 			})
 	}
-
 }
-
 
 // Send notification with parameters
 function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, image) {
@@ -124,12 +133,7 @@ function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpir
 			break;
 	}
 	if (pToken != "") {
-
-		let p = new push({
-			user: pUser,
-			token: pToken,
-		});
-
+		let p = new push({ user: pUser, token: pToken, });
 		let msg = {
 			// These values correspond to the parameters detailed on https://pushover.net/api
 			// 'message' is required. All other values are optional.
@@ -141,7 +145,7 @@ function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpir
 			sound: pSound,
 			attachment: image
 		};
-		// console.log(`Message: ${pMessage}, Title: ${pTitle}, Priority: ${priority}, Retry: ${pRetry}, Expire: ${pExpire}, Sound: ${pSound}"`);
+		// console.log(`ID: ${pUser}, Token: ${pToken}, Message: ${pMessage}, Title: ${pTitle}, Priority: ${priority}, Retry: ${pRetry}, Expire: ${pExpire}, Sound: ${pSound}"`);
 		p.send(msg, function (err, result) {
 			if (err) {
 				throw err;
@@ -195,10 +199,7 @@ function pushoverSend_device(pUser, pToken, pMessage, pTitle, pDevice, pPriority
 			break;
 	}
 	if (pToken != "") {
-		let p = new push({
-			user: pUser,
-			token: pToken,
-		});
+		let p = new push({ user: pUser, token: pToken, });
 
 		let msg = {
 			// These values correspond to the parameters detailed on https://pushover.net/api
@@ -233,7 +234,6 @@ function pushoverSend_device(pUser, pToken, pMessage, pTitle, pDevice, pPriority
 	return Promise.resolve()
 }
 
-
 // Create Insight log
 function createInsightlog() {
 
@@ -260,6 +260,7 @@ function buildPushoverArray() {
 
 	if (account != null) {
 		pushoverUser = account['user'];
+		pushoverGroup = account['group'];
 		pushoverToken = account['token'];
 		ledringPreference = account['ledring'];
 

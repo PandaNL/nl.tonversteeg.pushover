@@ -47,7 +47,11 @@
         <input class="form_input" id="pushover_user" type="text" value="" />
     </div>
     <div class="field row">
-        <label class="form_label"  for="pushover_token" data-i18n="settings.pushoverToken"></label>
+        <label class="form_label" for="pushover_group" data-i18n="settings.pushoverGroup"></label>
+        <input class="form_input" id="pushover_group" type="text" value="" />
+    </div>
+    <div class="field row">
+        <label class="form_label" for="pushover_token" data-i18n="settings.pushoverToken"></label>
         <input class="form_input" id="pushover_token" type="text" value="" />
     </div>
     <input type="checkbox" id="pushover_ledring" value="pushover_ledring"> <label for="pushover_ledring">Light led ring upon sending notification?</label>
@@ -84,6 +88,7 @@
 			currentPushoverAccount = value;
 
          	document.getElementById('pushover_user').value = currentPushoverAccount['user'];
+         	document.getElementById('pushover_group').value = currentPushoverAccount['group'];
       		document.getElementById('pushover_token').value = currentPushoverAccount['token'];
           if(currentPushoverAccount['ledring'] == true) {
             document.getElementById('pushover_ledring').checked = true;
@@ -123,6 +128,7 @@
     function clearPushoverSettings() {
 
       document.getElementById('pushover_user').value = '';
+      document.getElementById('pushover_group').value = '';
       document.getElementById('pushover_token').value = '';
 
     }
@@ -135,6 +141,7 @@
 		// Build array
         currentPushoverAccount = {
           'user': document.getElementById('pushover_user').value,
+          'group': document.getElementById('pushover_group').value,
           'token': document.getElementById('pushover_token').value,
           'ledring': document.getElementById('pushover_ledring').checked
         };
