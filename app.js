@@ -14,16 +14,11 @@ let ledringPreference = false;
 let InsightLog = null;
 
 class MyApp extends Homey.App {
-
 	onInit() {
-
         // Start building Pushover accounts array
 		buildPushoverArray();
-
 		createInsightlog();
-
 		Homey.ManagerSettings.on('set', function (settingname) {
-
 			if (settingname == 'pushoveraccount') {
 				console.log('Pushover - Account has been changed/updated...');
 				buildPushoverArray();
@@ -115,9 +110,7 @@ class MyApp extends Homey.App {
 				})
 			})
 	}
-
 }
-
 
 // Send notification with parameters
 function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, image) {
@@ -140,12 +133,7 @@ function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpir
 			break;
 	}
 	if (pToken != "") {
-
-		let p = new push({
-			user: pUser,
-			token: pToken,
-		});
-
+		let p = new push({ user: pUser, token: pToken, });
 		let msg = {
 			// These values correspond to the parameters detailed on https://pushover.net/api
 			// 'message' is required. All other values are optional.
@@ -211,10 +199,7 @@ function pushoverSend_device(pUser, pToken, pMessage, pTitle, pDevice, pPriority
 			break;
 	}
 	if (pToken != "") {
-		let p = new push({
-			user: pUser,
-			token: pToken,
-		});
+		let p = new push({ user: pUser, token: pToken, });
 
 		let msg = {
 			// These values correspond to the parameters detailed on https://pushover.net/api
@@ -248,7 +233,6 @@ function pushoverSend_device(pUser, pToken, pMessage, pTitle, pDevice, pPriority
 	}
 	return Promise.resolve()
 }
-
 
 // Create Insight log
 function createInsightlog() {
