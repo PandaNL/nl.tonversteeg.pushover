@@ -21,18 +21,18 @@ If the Pushover app is useful to you, buy me a beer!
 
 ### 0.0.12
 * Multiple fixes (thanks to Vekdkornet):
-** Updated colour scheme to "Pushover blue"
-** Support for group notifications. Add your group key under settings. 
-** Additional Dutch translations
+* Updated colour scheme to "Pushover blue"
+* Support for group notifications. Add your group key under settings. 
+* Additional Dutch translations
 
 ### 0.0.11
 * Multiple fixes (thanks to Vekdkornet):
-** Fixed an issue where all messages were being sent as "Normal" priority
-** Fixed an issue where the send message to device flow would not work
-** Added Notification Sound on the Image Flow Card
-** Added support for Custom Subject
-** Added support for Device Default Sound
-** Added support for Emergency Priority
+* Fixed an issue where all messages were being sent as "Normal" priority
+* Fixed an issue where the send message to device flow would not work
+* Added Notification Sound on the Image Flow Card
+* Added support for Custom Subject
+* Added support for Device Default Sound
+* Added support for Emergency Priority
 
 ### 0.0.10
 * Fixed device selection in flow card
