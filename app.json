@@ -1,40 +1,41 @@
 {
   "id": "nl.tonversteeg.pushover",
   "sdk": 2,
-  "name": {
-    "en": "Pushover Notifications"
+  "name": { 
+    "en": "Pushover Notifications", 
+    "nl": "Pushover Notificaties" 
   },
-  "description": {
-    "en": "Pushover Notification with Image support"
+  "description": { 
+    "en": "Pushover Notification with Image support", 
+    "nl": "Pushover Notificaties met beeldondersteuning" 
   },
   "category": "tools",
   "version": "0.0.12",
   "compatibility": ">=1.5.0",
-  "author": {
-    "name": "Ton Versteeg",
-    "email": "tonversteeg1@gmail.com"
+  "brandColor": "#249df1",
+  "author": { 
+    "name": "Ton Versteeg", 
+    "email": "tonversteeg1@gmail.com" 
   },
-  "images": {
-    "large": "/assets/images/large.jpg",
-    "small": "/assets/images/small.jpg"
+  "images": { 
+    "large": "/assets/images/large.jpg", 
+    "small": "/assets/images/small.jpg" 
   },
   "contributors": {
-    "developers": [
-      {
-        "name": "Kevin Traa",
-        "email": "ketra90@gmail.com"
-      },
-      {
-        "name": "Dannzak"
-      }
+    "developers": [ { 
+        "name": "Kevin Traa", 
+        "email": "ketra90@gmail.com" 
+      }, 
+      { 
+        "name": "Dannzak" 
+      }, 
+      { 
+        "name": "Veldkornet" 
+      } 
     ]
   },
-  "bugs": {
-    "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
-  },
-  "permissions": [
-    "homey:manager:ledring"
-  ],
+  "bugs": { "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues" },
+  "permissions": [ "homey:manager:ledring" ],
   "flow": {
     "actions": [
       {
@@ -193,7 +194,7 @@
                 "id": "gamelan",
                 "label": {
                   "en": "Gamelan",
-                  "nl": "Spelletje"
+                  "nl": "Gamelan"
                 }
               },
               {
@@ -475,7 +476,7 @@
                 "id": "gamelan",
                 "label": {
                   "en": "Gamelan",
-                  "nl": "Spelletje"
+                  "nl": "Gamelan"
                 }
               },
               {
@@ -740,7 +741,7 @@
                 "id": "gamelan",
                 "label": {
                   "en": "Gamelan",
-                  "nl": "Spelletje"
+                  "nl": "Gamelan"
                 }
               },
               {
@@ -866,10 +867,5 @@
         ]
       }
     ]
-  },
-  "dependencies": {
-    "pushover-notification-client": "*",
-    "http.min": "*",
-    "requests": "*"
   }
 }
