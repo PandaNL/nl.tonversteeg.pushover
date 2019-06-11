@@ -23,6 +23,10 @@
   },
   "contributors": {
     "developers": [ { 
+  	"name": "Ton Versteeg", 
+  	"email": "tonversteeg1@gmail.com" 
+      },
+      { 
         "name": "Kevin Traa", 
         "email": "ketra90@gmail.com" 
       }, 
@@ -305,16 +309,16 @@
             "name": "retry",
             "type": "text",
             "placeholder": {
-              "en": "Retry interval in seconds eg: 300",
-              "nl": "Pogingen interval in seconden bvb: 300"
+              "en": "Retry interval in seconds. Disabled: 0, Minimum: 30",
+              "nl": "Pogingen interval in seconden. Uitgeschakeld: 0, Minimaal: 300"
             }
           },
 		      {
             "name": "expire",
             "type": "text",
             "placeholder": {
-              "en": "Expiration in seconds eg: 600",
-              "nl": "Vervaltijd in seconden bvb: 600"
+              "en": "Expiration in seconds. Disabled: 0, Maximum: 10800",
+              "nl": "Vervaltijd in seconden: Uitgeschakeld: 0, Maximaal: 10800)"
             }
 			    }
         ]
@@ -587,16 +591,16 @@
             "name": "retry",
             "type": "text",
             "placeholder": {
-              "en": "Retry interval in seconds eg: 300",
-              "nl": "Pogingen interval in seconden bvb: 300"
+              "en": "Retry interval in seconds. Disabled: 0, Minimum: 30",
+              "nl": "Pogingen interval in seconden. Uitgeschakeld: 0, Minimaal: 300"
             }
           },
 		      {
             "name": "expire",
             "type": "text",
             "placeholder": {
-              "en": "Expiration in seconds eg: 600",
-              "nl": "Vervaltijd in seconden bvb: 600"
+              "en": "Expiration in seconds. Disabled: 0, Maximum: 10800",
+              "nl": "Vervaltijd in seconden: Uitgeschakeld: 0, Maximaal: 10800)"
             }
 			    }
         ]
