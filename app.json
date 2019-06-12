@@ -1,40 +1,45 @@
 {
   "id": "nl.tonversteeg.pushover",
   "sdk": 2,
-  "name": {
-    "en": "Pushover Notifications"
+  "name": { 
+    "en": "Pushover Notifications", 
+    "nl": "Pushover Notificaties" 
   },
-  "description": {
-    "en": "Pushover Notification with Image support"
+  "description": { 
+    "en": "Pushover Notification with Image support", 
+    "nl": "Pushover Notificaties met beeldondersteuning" 
   },
   "category": "tools",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "compatibility": ">=1.5.0",
-  "author": {
-    "name": "Ton Versteeg",
-    "email": "tonversteeg1@gmail.com"
+  "brandColor": "#249df1",
+  "author": { 
+    "name": "Ton Versteeg", 
+    "email": "tonversteeg1@gmail.com" 
   },
-  "images": {
-    "large": "/assets/images/large.jpg",
-    "small": "/assets/images/small.jpg"
+  "images": { 
+    "large": "/assets/images/large.jpg", 
+    "small": "/assets/images/small.jpg" 
   },
   "contributors": {
-    "developers": [
-      {
-        "name": "Kevin Traa",
-        "email": "ketra90@gmail.com"
+    "developers": [ { 
+  	"name": "Ton Versteeg", 
+  	"email": "tonversteeg1@gmail.com" 
       },
-      {
-        "name": "Dannzak"
-      }
+      { 
+        "name": "Kevin Traa", 
+        "email": "ketra90@gmail.com" 
+      }, 
+      { 
+        "name": "Dannzak" 
+      }, 
+      { 
+        "name": "Veldkornet" 
+      } 
     ]
   },
-  "bugs": {
-    "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
-  },
-  "permissions": [
-    "homey:manager:ledring"
-  ],
+  "bugs": { "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues" },
+  "permissions": [ "homey:manager:ledring" ],
   "flow": {
     "actions": [
       {
@@ -44,6 +49,30 @@
           "nl": "Pushover notificatie"
         },
         "args": [
+          {
+            "name": "target",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "User",
+                "label": {
+                  "en": "User",
+                  "nl": "Gebruiker"
+                }
+              },
+              {
+                "id": "Group",
+                "label": {
+                  "en": "Group",
+                  "nl": "Groep"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "User / Group",
+              "nl": "Gebruiker / Groep"
+            }
+          },
           {
             "name": "title",
             "type": "text",
@@ -67,36 +96,42 @@
               {
                 "id": "Normal",
                 "label": {
-                  "en": "Normal"
+                  "en": "Normal",
+                  "nl": "Normaal"
                 }
               },
               {
                 "id": "Lowest",
                 "label": {
-                  "en": "Lowest"
+                  "en": "Lowest",
+                  "nl": "Laagste"
                 }
               },
               {
                 "id": "Low",
                 "label": {
-                  "en": "Low"
+                  "en": "Low",
+                  "nl": "Laag"
                 }
               },
               {
                 "id": "High",
                 "label": {
-                  "en": "High"
+                  "en": "High",
+                  "nl": "Hoog"
                 }
               },
               {
                 "id": "Emergency",
                 "label": {
-                  "en": "Emergency"
+                  "en": "Emergency",
+                  "nl": "Nood"
                 }
               }
             ],
             "placeholder": {
-              "en": "Priority"
+              "en": "Priority",
+              "nl": "Prioriteit"
             }
           },
           {
@@ -106,160 +141,184 @@
               {
                 "id": "device",
                 "label": {
-                  "en": "Device Default"
+                  "en": "Device Default",
+                  "nl": "Apparaat Standaard"
                 }
               },
               {
                 "id": "pushover",
                 "label": {
-                  "en": "Pushover Default"
+                  "en": "Pushover Default",
+                  "nl": "Pushover Standaard"
                 }
               },
               {
                 "id": "bike",
                 "label": {
-                  "en": "Bike"
+                  "en": "Bike",
+                  "nl": "Fiets"
                 }
               },
               {
                 "id": "bugle",
                 "label": {
-                  "en": "Bugle"
+                  "en": "Bugle",
+                  "nl": "Hoorn"
                 }
               },
               {
                 "id": "cashregister",
                 "label": {
-                  "en": "Cash Register"
+                  "en": "Cash Register",
+                  "nl": "Kassa"
                 }
               },
               {
                 "id": "classical",
                 "label": {
-                  "en": "Classical"
+                  "en": "Classical",
+                  "nl": "Klassiek"
                 }
               },
               {
                 "id": "cosmic",
                 "label": {
-                  "en": "Cosmic"
+                  "en": "Cosmic",
+                  "nl": "Kosmisch"
                 }
               },
               {
                 "id": "falling",
                 "label": {
-                  "en": "Falling"
+                  "en": "Falling",
+                  "nl": "Vallend"
                 }
               },
               {
                 "id": "gamelan",
                 "label": {
-                  "en": "Gamelan"
+                  "en": "Gamelan",
+                  "nl": "Gamelan"
                 }
               },
               {
                 "id": "incoming",
                 "label": {
-                  "en": "Incoming"
+                  "en": "Incoming",
+                  "nl": "Inkomend"
                 }
               },
               {
                 "id": "intermission",
                 "label": {
-                  "en": "Intermission"
+                  "en": "Intermission",
+                  "nl": "Pauze"
                 }
               },
               {
                 "id": "magic",
                 "label": {
-                  "en": "Magic"
+                  "en": "Magic",
+                  "nl": "Magie"
                 }
               },
               {
                 "id": "mechanical",
                 "label": {
-                  "en": "Mechanical"
+                  "en": "Mechanical",
+                  "nl": "Mechanisch"
                 }
               },
               {
                 "id": "pianobar",
                 "label": {
-                  "en": "Pianobar"
+                  "en": "Pianobar",
+                  "nl": "Pianobar"
                 }
               },
               {
                 "id": "siren",
                 "label": {
-                  "en": "Siren"
+                  "en": "Siren",
+                  "nl": "Sirene"
                 }
               },
               {
                 "id": "spacealarm",
                 "label": {
-                  "en": "Space Alarm"
+                  "en": "Space Alarm",
+                  "nl": "Ruimte Alarm"
                 }
               },
               {
                 "id": "tugboat",
                 "label": {
-                  "en": "Tug Boat"
+                  "en": "Tug Boat",
+                  "nl": "Sleepboot"
                 }
               },
               {
                 "id": "alien",
                 "label": {
-                  "en": "Alien Alarm (long)"
+                  "en": "Alien Alarm (long)",
+                  "nl": "Buitenaards Alarn (lang)"
                 }
               },
               {
                 "id": "climb",
                 "label": {
-                  "en": "Climb (long)"
+                  "en": "Climb (long)",
+                  "nl": "Klim (Lang)"
                 }
               },
               {
                 "id": "persistent",
                 "label": {
-                  "en": "Persistent (long)"
+                  "en": "Persistent (long)",
+                  "nl": "Aanhoudend (lang)"
                 }
               },
               {
                 "id": "echo",
                 "label": {
-                  "en": "Echo (long)"
+                  "en": "Echo (long)",
+                  "nl": "Echo (lang)"
                 }
               },
               {
                 "id": "updown",
                 "label": {
-                  "en": "Up Down (long)"
+                  "en": "Up Down (long)",
+                  "nl": "Op Neer (lang)"
                 }
               },
               {
                 "id": "none",
                 "label": {
-                  "en": "None (silent)"
+                  "en": "None (silent)",
+                  "nl": "Geen (stil)"
                 }
               }
             ],
             "placeholder": {
-              "en": "Device Default"
+              "en": "Device Default",
+              "nl": "Apparaat Standaard"
             }
           },
           {
             "name": "retry",
             "type": "text",
             "placeholder": {
-              "en": "Retry interval in seconds eg: 300",
-              "nl": "Pogingen interval in seconden bvb: 300"
+              "en": "Retry interval in seconds. Disabled: 0, Minimum: 30",
+              "nl": "Pogingen interval in seconden. Uitgeschakeld: 0, Minimaal: 300"
             }
           },
 		      {
             "name": "expire",
             "type": "text",
             "placeholder": {
-              "en": "Expiration in seconds eg: 600",
-              "nl": "Vervaltijd in seconden bvb: 600"
+              "en": "Expiration in seconds. Disabled: 0, Maximum: 10800",
+              "nl": "Vervaltijd in seconden: Uitgeschakeld: 0, Maximaal: 10800)"
             }
 			    }
         ]
@@ -273,6 +332,30 @@
         },
         "args": [
           {
+            "name": "target",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "User",
+                "label": {
+                  "en": "User",
+                  "nl": "Gebruiker"
+                }
+              },
+              {
+                "id": "Group",
+                "label": {
+                  "en": "Group",
+                  "nl": "Groep"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "User / Group",
+              "nl": "Gebruiker / Groep"
+            }
+          },
+          {
             "name": "title",
             "type": "text",
             "placeholder": {
@@ -295,36 +378,42 @@
               {
                 "id": "Normal",
                 "label": {
-                  "en": "Normal"
+                  "en": "Normal",
+                  "nl": "Normaal"
                 }
               },
               {
                 "id": "Lowest",
                 "label": {
-                  "en": "Lowest"
+                  "en": "Lowest",
+                  "nl": "Laagste"
                 }
               },
               {
                 "id": "Low",
                 "label": {
-                  "en": "Low"
+                  "en": "Low",
+                  "nl": "Laag"
                 }
               },
               {
                 "id": "High",
                 "label": {
-                  "en": "High"
+                  "en": "High",
+                  "nl": "Hoog"
                 }
               },
               {
                 "id": "Emergency",
                 "label": {
-                  "en": "Emergency"
+                  "en": "Emergency",
+                  "nl": "Nood"
                 }
               }
             ],
             "placeholder": {
-              "en": "Priority"
+              "en": "Priority",
+              "nl": "Prioriteit"
             }
           },
           {
@@ -334,160 +423,184 @@
               {
                 "id": "device",
                 "label": {
-                  "en": "Device Default"
+                  "en": "Device Default",
+                  "nl": "Apparaat Standaard"
                 }
               },
               {
                 "id": "pushover",
                 "label": {
-                  "en": "Pushover Default"
+                  "en": "Pushover Default",
+                  "nl": "Pushover Standaard"
                 }
               },
               {
                 "id": "bike",
                 "label": {
-                  "en": "Bike"
+                  "en": "Bike",
+                  "nl": "Fiets"
                 }
               },
               {
                 "id": "bugle",
                 "label": {
-                  "en": "Bugle"
+                  "en": "Bugle",
+                  "nl": "Hoorn"
                 }
               },
               {
                 "id": "cashregister",
                 "label": {
-                  "en": "Cash Register"
+                  "en": "Cash Register",
+                  "nl": "Kassa"
                 }
               },
               {
                 "id": "classical",
                 "label": {
-                  "en": "Classical"
+                  "en": "Classical",
+                  "nl": "Klassiek"
                 }
               },
               {
                 "id": "cosmic",
                 "label": {
-                  "en": "Cosmic"
+                  "en": "Cosmic",
+                  "nl": "Kosmisch"
                 }
               },
               {
                 "id": "falling",
                 "label": {
-                  "en": "Falling"
+                  "en": "Falling",
+                  "nl": "Vallend"
                 }
               },
               {
                 "id": "gamelan",
                 "label": {
-                  "en": "Gamelan"
+                  "en": "Gamelan",
+                  "nl": "Gamelan"
                 }
               },
               {
                 "id": "incoming",
                 "label": {
-                  "en": "Incoming"
+                  "en": "Incoming",
+                  "nl": "Inkomend"
                 }
               },
               {
                 "id": "intermission",
                 "label": {
-                  "en": "Intermission"
+                  "en": "Intermission",
+                  "nl": "Pauze"
                 }
               },
               {
                 "id": "magic",
                 "label": {
-                  "en": "Magic"
+                  "en": "Magic",
+                  "nl": "Magie"
                 }
               },
               {
                 "id": "mechanical",
                 "label": {
-                  "en": "Mechanical"
+                  "en": "Mechanical",
+                  "nl": "Mechanisch"
                 }
               },
               {
                 "id": "pianobar",
                 "label": {
-                  "en": "Pianobar"
+                  "en": "Pianobar",
+                  "nl": "Pianobar"
                 }
               },
               {
                 "id": "siren",
                 "label": {
-                  "en": "Siren"
+                  "en": "Siren",
+                  "nl": "Sirene"
                 }
               },
               {
                 "id": "spacealarm",
                 "label": {
-                  "en": "Space Alarm"
+                  "en": "Space Alarm",
+                  "nl": "Ruimte Alarm"
                 }
               },
               {
                 "id": "tugboat",
                 "label": {
-                  "en": "Tug Boat"
+                  "en": "Tug Boat",
+                  "nl": "Sleepboot"
                 }
               },
               {
                 "id": "alien",
                 "label": {
-                  "en": "Alien Alarm (long)"
+                  "en": "Alien Alarm (long)",
+                  "nl": "Buitenaards Alarn (lang)"
                 }
               },
               {
                 "id": "climb",
                 "label": {
-                  "en": "Climb (long)"
+                  "en": "Climb (long)",
+                  "nl": "Klim (Lang)"
                 }
               },
               {
                 "id": "persistent",
                 "label": {
-                  "en": "Persistent (long)"
+                  "en": "Persistent (long)",
+                  "nl": "Aanhoudend (lang)"
                 }
               },
               {
                 "id": "echo",
                 "label": {
-                  "en": "Echo (long)"
+                  "en": "Echo (long)",
+                  "nl": "Echo (lang)"
                 }
               },
               {
                 "id": "updown",
                 "label": {
-                  "en": "Up Down (long)"
+                  "en": "Up Down (long)",
+                  "nl": "Op Neer (lang)"
                 }
               },
               {
                 "id": "none",
                 "label": {
-                  "en": "None (silent)"
+                  "en": "None (silent)",
+                  "nl": "Geen (stil)"
                 }
               }
             ],
             "placeholder": {
-              "en": "Device Default"
+              "en": "Device Default",
+              "nl": "Apparaat Standaard"
             }
           },
           {
             "name": "retry",
             "type": "text",
             "placeholder": {
-              "en": "Retry interval in seconds eg: 300",
-              "nl": "Pogingen interval in seconden bvb: 300"
+              "en": "Retry interval in seconds. Disabled: 0, Minimum: 30",
+              "nl": "Pogingen interval in seconden. Uitgeschakeld: 0, Minimaal: 300"
             }
           },
 		      {
             "name": "expire",
             "type": "text",
             "placeholder": {
-              "en": "Expiration in seconds eg: 600",
-              "nl": "Vervaltijd in seconden bvb: 600"
+              "en": "Expiration in seconds. Disabled: 0, Maximum: 10800",
+              "nl": "Vervaltijd in seconden: Uitgeschakeld: 0, Maximaal: 10800)"
             }
 			    }
         ]
@@ -530,36 +643,213 @@
               {
                 "id": "Normal",
                 "label": {
-                  "en": "Normal"
+                  "en": "Normal",
+                  "nl": "Normaal"
                 }
               },
               {
                 "id": "Lowest",
                 "label": {
-                  "en": "Lowest"
+                  "en": "Lowest",
+                  "nl": "Laagste"
                 }
               },
               {
                 "id": "Low",
                 "label": {
-                  "en": "Low"
+                  "en": "Low",
+                  "nl": "Laag"
                 }
               },
               {
                 "id": "High",
                 "label": {
-                  "en": "High"
+                  "en": "High",
+                  "nl": "Hoog"
                 }
               },
               {
                 "id": "Emergency",
                 "label": {
-                  "en": "Emergency"
+                  "en": "Emergency",
+                  "nl": "Nood"
                 }
               }
             ],
             "placeholder": {
-              "en": "Priority"
+              "en": "Priority",
+              "nl": "Prioriteit"
+            }
+          },
+          {
+            "name": "sound",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "device",
+                "label": {
+                  "en": "Device Default",
+                  "nl": "Apparaat Standaard"
+                }
+              },
+              {
+                "id": "pushover",
+                "label": {
+                  "en": "Pushover Default",
+                  "nl": "Pushover Standaard"
+                }
+              },
+              {
+                "id": "bike",
+                "label": {
+                  "en": "Bike",
+                  "nl": "Fiets"
+                }
+              },
+              {
+                "id": "bugle",
+                "label": {
+                  "en": "Bugle",
+                  "nl": "Hoorn"
+                }
+              },
+              {
+                "id": "cashregister",
+                "label": {
+                  "en": "Cash Register",
+                  "nl": "Kassa"
+                }
+              },
+              {
+                "id": "classical",
+                "label": {
+                  "en": "Classical",
+                  "nl": "Klassiek"
+                }
+              },
+              {
+                "id": "cosmic",
+                "label": {
+                  "en": "Cosmic",
+                  "nl": "Kosmisch"
+                }
+              },
+              {
+                "id": "falling",
+                "label": {
+                  "en": "Falling",
+                  "nl": "Vallend"
+                }
+              },
+              {
+                "id": "gamelan",
+                "label": {
+                  "en": "Gamelan",
+                  "nl": "Gamelan"
+                }
+              },
+              {
+                "id": "incoming",
+                "label": {
+                  "en": "Incoming",
+                  "nl": "Inkomend"
+                }
+              },
+              {
+                "id": "intermission",
+                "label": {
+                  "en": "Intermission",
+                  "nl": "Pauze"
+                }
+              },
+              {
+                "id": "magic",
+                "label": {
+                  "en": "Magic",
+                  "nl": "Magie"
+                }
+              },
+              {
+                "id": "mechanical",
+                "label": {
+                  "en": "Mechanical",
+                  "nl": "Mechanisch"
+                }
+              },
+              {
+                "id": "pianobar",
+                "label": {
+                  "en": "Pianobar",
+                  "nl": "Pianobar"
+                }
+              },
+              {
+                "id": "siren",
+                "label": {
+                  "en": "Siren",
+                  "nl": "Sirene"
+                }
+              },
+              {
+                "id": "spacealarm",
+                "label": {
+                  "en": "Space Alarm",
+                  "nl": "Ruimte Alarm"
+                }
+              },
+              {
+                "id": "tugboat",
+                "label": {
+                  "en": "Tug Boat",
+                  "nl": "Sleepboot"
+                }
+              },
+              {
+                "id": "alien",
+                "label": {
+                  "en": "Alien Alarm (long)",
+                  "nl": "Buitenaards Alarn (lang)"
+                }
+              },
+              {
+                "id": "climb",
+                "label": {
+                  "en": "Climb (long)",
+                  "nl": "Klim (Lang)"
+                }
+              },
+              {
+                "id": "persistent",
+                "label": {
+                  "en": "Persistent (long)",
+                  "nl": "Aanhoudend (lang)"
+                }
+              },
+              {
+                "id": "echo",
+                "label": {
+                  "en": "Echo (long)",
+                  "nl": "Echo (lang)"
+                }
+              },
+              {
+                "id": "updown",
+                "label": {
+                  "en": "Up Down (long)",
+                  "nl": "Op Neer (lang)"
+                }
+              },
+              {
+                "id": "none",
+                "label": {
+                  "en": "None (silent)",
+                  "nl": "Geen (stil)"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Device Default",
+              "nl": "Apparaat Standaard"
             }
           },
           {
@@ -581,10 +871,5 @@
         ]
       }
     ]
-  },
-  "dependencies": {
-    "pushover-notification-client": "*",
-    "http.min": "*",
-    "requests": "*"
   }
 }
