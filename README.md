@@ -19,6 +19,9 @@ If the Pushover app is useful to you, buy me a beer!
 
 ## Changelog
 
+### 0.0.13
+* Added titles and hints to the flow card actions
+
 ### 0.0.12
 * Multiple fixes (thanks to Vekdkornet):
 * Updated colour scheme to "Pushover blue"
