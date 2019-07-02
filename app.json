@@ -1,59 +1,66 @@
 {
   "id": "nl.tonversteeg.pushover",
   "sdk": 2,
-  "name": { 
-    "en": "Pushover Notifications", 
-    "nl": "Pushover Notificaties" 
+  "name": {
+    "en": "Pushover Notifications",
+    "nl": "Pushover Notificaties"
   },
-  "description": { 
-    "en": "Pushover Notification with Image support", 
-    "nl": "Pushover Notificaties met beeldondersteuning" 
+  "description": {
+    "en": "Pushover Notification with Image support",
+    "nl": "Pushover Notificaties met beeldondersteuning"
   },
   "category": "tools",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "compatibility": ">=1.5.0",
   "brandColor": "#249df1",
-  "author": { 
-    "name": "Ton Versteeg", 
-    "email": "tonversteeg1@gmail.com" 
+  "author": {
+    "name": "Ton Versteeg",
+    "email": "tonversteeg1@gmail.com"
   },
-  "images": { 
-    "large": "/assets/images/large.jpg", 
-    "small": "/assets/images/small.jpg" 
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
   },
   "contributors": {
-    "developers": [ { 
-  	"name": "Ton Versteeg", 
-  	"email": "tonversteeg1@gmail.com" 
+    "developers": [{
+        "name": "Ton Versteeg",
+        "email": "tonversteeg1@gmail.com"
       },
-      { 
-        "name": "Kevin Traa", 
-        "email": "ketra90@gmail.com" 
-      }, 
-      { 
-        "name": "Dannzak" 
-      }, 
-      { 
-        "name": "Veldkornet" 
-      } 
+      {
+        "name": "Kevin Traa",
+        "email": "ketra90@gmail.com"
+      },
+      {
+        "name": "Dannzak"
+      },
+      {
+        "name": "Veldkornet"
+      }
     ]
   },
-  "bugs": { "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues" },
-  "permissions": [ "homey:manager:ledring" ],
+  "bugs": {
+    "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
+  },
+  "permissions": ["homey:manager:ledring"],
   "flow": {
-    "actions": [
-      {
+    "actions": [{
         "id": "pushoverSend",
         "title": {
           "en": "Pushover notification",
           "nl": "Pushover notificatie"
         },
-        "args": [
-          {
+        "hint": {
+          "en": "Send a Pushover notification to a User / Group.",
+          "nl": "Stuur een pushover-notificatie naar een gebruiker / groep."
+        },
+        "args": [{
             "name": "target",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Target",
+              "nl": "Doelwit"
+            },
+            "values": [{
                 "id": "User",
                 "label": {
                   "en": "User",
@@ -76,6 +83,10 @@
           {
             "name": "title",
             "type": "text",
+            "title": {
+              "en": "Title",
+              "nl": "Titel"
+            },
             "placeholder": {
               "en": "Title",
               "nl": "Titel"
@@ -84,6 +95,10 @@
           {
             "name": "message",
             "type": "text",
+            "title": {
+              "en": "Message",
+              "nl": "Bericht"
+            },
             "placeholder": {
               "en": "Message",
               "nl": "Bericht"
@@ -92,8 +107,11 @@
           {
             "name": "priority",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Priority",
+              "nl": "Prioriteit"
+            },
+            "values": [{
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -137,8 +155,11 @@
           {
             "name": "sound",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Sound",
+              "nl": "Geluid"
+            },
+            "values": [{
                 "id": "device",
                 "label": {
                   "en": "Device Default",
@@ -308,19 +329,27 @@
           {
             "name": "retry",
             "type": "text",
+            "title": {
+              "en": "Emergency Retry Interval (seconds)",
+              "nl": "Nood Notificatie Pogingen (seconden)"
+            },
             "placeholder": {
-              "en": "Retry interval in seconds. Disabled: 0, Minimum: 30",
-              "nl": "Pogingen interval in seconden. Uitgeschakeld: 0, Minimaal: 300"
+              "en": "Disabled: 0, Minimum: 30",
+              "nl": "Uitgeschakeld: 0, Minimaal: 30"
             }
           },
-		      {
+          {
             "name": "expire",
             "type": "text",
+            "title": {
+              "en": "Emergency Retry Expiration (seconds)",
+              "nl": "Nood Notificatie Vervaltijd (seconden)"
+            },
             "placeholder": {
-              "en": "Expiration in seconds. Disabled: 0, Maximum: 10800",
-              "nl": "Vervaltijd in seconden: Uitgeschakeld: 0, Maximaal: 10800)"
+              "en": "Disabled: 0, Maximum: 10800",
+              "nl": "Uitgeschakeld: 0, Maximaal: 10800"
             }
-			    }
+          }
         ]
       },
       {
@@ -330,12 +359,18 @@
           "en": "Pushover Image",
           "nl": "Pushover Foto"
         },
-        "args": [
-          {
+        "hint": {
+          "en": "Send a Pushover notification with an image to a User / Group.",
+          "nl": "Stuur een pushover-notificatie met een afbeelding naar een gebruiker / groep."
+        },
+        "args": [{
             "name": "target",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Target",
+              "nl": "Doelwit"
+            },
+            "values": [{
                 "id": "User",
                 "label": {
                   "en": "User",
@@ -358,6 +393,10 @@
           {
             "name": "title",
             "type": "text",
+            "title": {
+              "en": "Title",
+              "nl": "Titel"
+            },
             "placeholder": {
               "en": "Title",
               "nl": "Titel"
@@ -366,6 +405,10 @@
           {
             "name": "message",
             "type": "text",
+            "title": {
+              "en": "Message",
+              "nl": "Bericht"
+            },
             "placeholder": {
               "en": "Message",
               "nl": "Bericht"
@@ -374,8 +417,11 @@
           {
             "name": "priority",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Priority",
+              "nl": "Prioriteit"
+            },
+            "values": [{
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -419,8 +465,11 @@
           {
             "name": "sound",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Sound",
+              "nl": "Geluid"
+            },
+            "values": [{
                 "id": "device",
                 "label": {
                   "en": "Device Default",
@@ -590,19 +639,27 @@
           {
             "name": "retry",
             "type": "text",
+            "title": {
+              "en": "Emergency Retry Interval (seconds)",
+              "nl": "Nood Notificatie Pogingen (seconden)"
+            },
             "placeholder": {
-              "en": "Retry interval in seconds. Disabled: 0, Minimum: 30",
-              "nl": "Pogingen interval in seconden. Uitgeschakeld: 0, Minimaal: 300"
+              "en": "Disabled: 0, Minimum: 30",
+              "nl": "Uitgeschakeld: 0, Minimaal: 30"
             }
           },
-		      {
+          {
             "name": "expire",
             "type": "text",
+            "title": {
+              "en": "Emergency Retry Expiration (seconds)",
+              "nl": "Nood Notificatie Vervaltijd (seconden)"
+            },
             "placeholder": {
-              "en": "Expiration in seconds. Disabled: 0, Maximum: 10800",
-              "nl": "Vervaltijd in seconden: Uitgeschakeld: 0, Maximaal: 10800)"
+              "en": "Disabled: 0, Maximum: 10800",
+              "nl": "Uitgeschakeld: 0, Maximaal: 10800"
             }
-			    }
+          }
         ]
       },
       {
@@ -611,10 +668,17 @@
           "en": "Pushover notification (Device)",
           "nl": "Pushover notificatie (Apparaat)"
         },
-        "args": [
-          {
+        "hint": {
+          "en": "Send a Pushover notification to a specific device.",
+          "nl": "Stuur een pushover-notificatie naar een specifiek apparaat."
+        },
+        "args": [{
             "name": "device",
             "type": "autocomplete",
+            "title": {
+              "en": "Target",
+              "nl": "Doelwit"
+            },
             "placeholder": {
               "en": "Device name",
               "nl": "Apparaat naam"
@@ -623,6 +687,10 @@
           {
             "name": "title",
             "type": "text",
+            "title": {
+              "en": "Title",
+              "nl": "Titel"
+            },
             "placeholder": {
               "en": "Title",
               "nl": "Titel"
@@ -631,6 +699,10 @@
           {
             "name": "message",
             "type": "text",
+            "title": {
+              "en": "Message",
+              "nl": "Bericht"
+            },
             "placeholder": {
               "en": "Message",
               "nl": "Bericht"
@@ -639,8 +711,11 @@
           {
             "name": "priority",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Priority",
+              "nl": "Prioriteit"
+            },
+            "values": [{
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -684,8 +759,11 @@
           {
             "name": "sound",
             "type": "dropdown",
-            "values": [
-              {
+            "title": {
+              "en": "Sound",
+              "nl": "Geluid"
+            },
+            "values": [{
                 "id": "device",
                 "label": {
                   "en": "Device Default",
@@ -855,19 +933,27 @@
           {
             "name": "retry",
             "type": "text",
+            "title": {
+              "en": "Emergency Retry Interval (seconds)",
+              "nl": "Nood Notificatie Pogingen (seconden)"
+            },
             "placeholder": {
-              "en": "Retry interval in seconds eg: 300",
-              "nl": "Pogingen interval in seconden bvb: 300"
+              "en": "Disabled: 0, Minimum: 30",
+              "nl": "Uitgeschakeld: 0, Minimaal: 30"
             }
           },
-		      {
+          {
             "name": "expire",
             "type": "text",
+            "title": {
+              "en": "Emergency Retry Expiration (seconds)",
+              "nl": "Nood Notificatie Vervaltijd (seconden)"
+            },
             "placeholder": {
-              "en": "Expiration in seconds eg: 600",
-              "nl": "Vervaltijd in seconden bvb: 600"
+              "en": "Disabled: 0, Maximum: 10800",
+              "nl": "Uitgeschakeld: 0, Maximaal: 10800"
             }
-			    }
+          }
         ]
       }
     ]
