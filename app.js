@@ -41,7 +41,9 @@ class MyApp extends Homey.App {
                 if (pDevice == null || pDevice == '') return new Error("No devices registered on this Pushover account!");
 				let pPriority = args.priority;
 				let pRetry = args.retry;
+				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
 				let pExpire = args.expire;
+				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
 				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
 				//return Promise.resolve();
 		    })
@@ -73,7 +75,10 @@ class MyApp extends Homey.App {
                 if (typeof pMessage == 'undefined' || pMessage == null || pMessage == '') return new Error("Message can not be empty");
 				let pPriority = args.priority;
 				let pRetry = args.retry;
+				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
 				let pExpire = args.expire;
+				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
+				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
                 return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound);
                 //return Promise.resolve();
                 })
@@ -98,7 +103,10 @@ class MyApp extends Homey.App {
 				let pSound = args.sound;
 				let pPriority = args.priority;
 				let pRetry = args.retry;
+				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
 				let pExpire = args.expire;
+				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
+				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
                 let image = args.droptoken;
 				image.getBuffer()
 				.then( buf => {
@@ -109,6 +117,42 @@ class MyApp extends Homey.App {
 					console.log(err)
 				})
 			})
+		let sendImageDevice = new Homey.FlowCardAction('pushoverSendImageDevice');
+		sendImageDevice
+			.register()
+			.registerRunListener(( args, state) => {
+
+                if (typeof validation == 'undefined' || validation == '0') return callback(new Error("Pushover api/token key not configured or valid under settings!"));
+				let tempUser = pushoverUser;
+				let tempToken = pushoverToken;
+				let pMessage = args.message;
+				let pTitle = args.title;
+				let pSound = args.sound;
+				if (typeof pMessage == 'undefined' || pMessage == null || pMessage == '') return new Error("Message can not be empty");
+                let pDevice = args.device.name;
+                if (pDevice == null || pDevice == '') return new Error("No devices registered on this Pushover account!");
+				let pPriority = args.priority;
+				let pRetry = args.retry;
+				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
+				let pExpire = args.expire;
+				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
+				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
+                let image = args.droptoken;
+				image.getBuffer()
+				.then( buf => {
+                    //console.log(buf);
+					return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound, buf);
+                })
+				.catch (function(err){
+					console.log(err)
+				})
+			})
+			sendImageDevice.getArgument('device').registerAutocompleteListener(( query, args ) => {
+                 let deviceSearchString = query;
+				 let items = searchForDevicesByValue(deviceSearchString);
+				 console.log(items)
+                 return Promise.resolve(items);
+            });
 	}
 }
 

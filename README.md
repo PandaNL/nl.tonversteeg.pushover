@@ -19,6 +19,10 @@ If the Pushover app is useful to you, buy me a beer!
 
 ## Changelog
 
+### 0.0.14
+* Added flow card for sending a image to a specific device
+* If you encounter crashes, please uninstall and re-install the Pushover App and edit all your flows with pushover cards, please fill in the emergency and expire field! after this re-enter api-key in settings
+
 ### 0.0.13
 * Added titles and hints to the flow card actions
 
