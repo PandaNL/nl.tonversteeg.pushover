@@ -1,6 +1,6 @@
 {
     "name": "nl.tonversteeg.pushover",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "description": "Pushover notifications for Athom Homey",
     "main": "app.js",
     "dependencies": {
