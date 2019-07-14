@@ -53,6 +53,7 @@ class MyApp extends Homey.App {
 				 console.log(items)
                  return Promise.resolve(items);
             });
+			
         let sendMessage = new Homey.FlowCardAction('pushoverSend');
         sendMessage
             .register()
@@ -78,10 +79,10 @@ class MyApp extends Homey.App {
 				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
 				let pExpire = args.expire;
 				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
-				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
-                return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound);
+				return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound);
                 //return Promise.resolve();
                 })
+				
 		let sendImage = new Homey.FlowCardAction('pushoverSendImage');
 		sendImage
 			.register()
@@ -106,8 +107,7 @@ class MyApp extends Homey.App {
 				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
 				let pExpire = args.expire;
 				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
-				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
-                let image = args.droptoken;
+				let image = args.droptoken;
 				image.getBuffer()
 				.then( buf => {
                     //console.log(buf);
@@ -136,8 +136,7 @@ class MyApp extends Homey.App {
 				if (typeof pRetry == 'undefined' || pRetry == null || pRetry == '') return new Error("Emergency Retry can not be empty");
 				let pExpire = args.expire;
 				if (typeof pExpire == 'undefined' || pExpire == null || pExpire == '') return new Error("Emergency Expire can not be empty");
-				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
-                let image = args.droptoken;
+				let image = args.droptoken;
 				image.getBuffer()
 				.then( buf => {
                     //console.log(buf);
