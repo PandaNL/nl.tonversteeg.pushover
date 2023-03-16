@@ -14,20 +14,19 @@ let ledringPreference = false;
 let InsightLog = null;
 
 class MyApp extends Homey.App {
-	onInit() {
+	async onInit() {
         // Start building Pushover accounts array
-		buildPushoverArray();
-		createInsightlog();
-		Homey.ManagerSettings.on('set', function (settingname) {
+		this.buildPushoverArray();
+		this.createInsightlog();
+		this.homey.settings.on('set', settingname => {
 			if (settingname == 'pushoveraccount') {
 				console.log('Pushover - Account has been changed/updated...');
-				buildPushoverArray();
+				this.buildPushoverArray();
 			}
 		});
 
-		let sendMessageDevice = new Homey.FlowCardAction('pushoverSend_device');
+		let sendMessageDevice = this.homey.flow.getActionCard('pushoverSend_device');
 		sendMessageDevice
-		    .register()
 		    .registerRunListener(( args, state ) => {
 
                 if (typeof validation == 'undefined' || validation == '0') return new Error("Pushover api/token key not configured or valid under settings!");
@@ -42,6 +41,16 @@ class MyApp extends Homey.App {
 				let pPriority = args.priority;
 				let pRetry = args.retry;
 				let pExpire = args.expire;
+				if (typeof args.retry == 'undefined' || args.retry == null || args.retry == '') {
+					pRetry = 0;
+				} else {
+					pRetry = args.retry;
+				}
+				if (typeof args.expire == 'undefined' || args.expire == null || args.expire == '') {
+					pExpire = 0;
+				} else {
+					pExpire = args.expire;
+				}
 				return pushoverSend_device(tempUser, tempToken, pMessage, pTitle, pDevice, pPriority, pRetry, pExpire, pSound);
 				//return Promise.resolve();
 		    })
@@ -51,9 +60,8 @@ class MyApp extends Homey.App {
 				 console.log(items)
                  return Promise.resolve(items);
             });
-        let sendMessage = new Homey.FlowCardAction('pushoverSend');
+        let sendMessage = this.homey.flow.getActionCard('pushoverSend');
         sendMessage
-            .register()
             .registerRunListener(( args, state ) => {
 
                 if (typeof validation == 'undefined' || validation == '0') return new Error("Pushover api/token key not configured or valid under settings!");
@@ -72,14 +80,23 @@ class MyApp extends Homey.App {
                 let pSound = args.sound;
                 if (typeof pMessage == 'undefined' || pMessage == null || pMessage == '') return new Error("Message can not be empty");
 				let pPriority = args.priority;
-				let pRetry = args.retry;
-				let pExpire = args.expire;
+				let pRetry;
+				let pExpire;
+				if (typeof args.retry == 'undefined' || args.retry == null || args.retry == '') {
+					pRetry = 0;
+				} else {
+					pRetry = args.retry;
+				}
+				if (typeof args.expire == 'undefined' || args.expire == null || args.expire == '') {
+					pExpire = 0;
+				} else {
+					pExpire = args.expire;
+				}
                 return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound);
                 //return Promise.resolve();
                 })
-		let sendImage = new Homey.FlowCardAction('pushoverSendImage');
+		let sendImage = this.homey.flow.getActionCard('pushoverSendImage');
 		sendImage
-			.register()
 			.registerRunListener(( args, state) => {
 
                 if (typeof validation == 'undefined' || validation == '0') return callback(new Error("Pushover api/token key not configured or valid under settings!"));
@@ -99,18 +116,100 @@ class MyApp extends Homey.App {
 				let pPriority = args.priority;
 				let pRetry = args.retry;
 				let pExpire = args.expire;
+				if (typeof args.retry == 'undefined' || args.retry == null || args.retry == '') {
+					pRetry = 0;
+				} else {
+					pRetry = args.retry;
+				}
+				if (typeof args.expire == 'undefined' || args.expire == null || args.expire == '') {
+					pExpire = 0;
+				} else {
+					pExpire = args.expire;
+				}
                 let image = args.droptoken;
-				image.getBuffer()
+				image.getStream()
 				.then( buf => {
-                    //console.log(buf);
-					return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, buf);
+                    console.log(buf);
+					return pushoverSend(tempUser, tempToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, buf.filename);
                 })
 				.catch (function(err){
 					console.log(err)
 				})
 			})
+
+			
 	}
+
+	buildPushoverArray() {
+		account = null;
+		account = this.homey.settings.get('pushoveraccount');
+	
+		if (account != null) {
+			pushoverUser = account['user'];
+			pushoverGroup = account['group'];
+			pushoverToken = account['token'];
+			ledringPreference = account['ledring'];
+	
+			let url = "https://api.pushover.net/1/users/validate.json";
+	
+			http.post(url, 'token=' + pushoverToken + '&user=' + pushoverUser).then(function (result) {
+				if (result.response.statusCode == "200") {
+					request = JSON.parse(result.data);
+					devices = request.devices;
+					validation = request.status;
+	
+					if (validation == "1") {
+						console.log("Pushover - Account validated successful");
+						console.log("Pushover - Listing devices: " + devices);
+					} else {
+						console.log("Pushover - User and/or Token key invalid");
+					}
+				} else if (result.response.statusCode == "400") {
+					console.log("Pushover - User and/or Token key invalid");
+					validation = "0";
+				}
+				
+			});
+			this.logValidation();
+	
+		} else {
+			console.log("Pushover - No account configured yet");
+		}
+	}
+
+	logValidation() {
+		let validatedSuccess = "Validation successful"
+		let validatedFailed = "Validation failed, bad user/api key!"
+		if (validation == "1") {
+			this.homey.settings.set('pushovervalidation', validatedSuccess);
+		} else if (validation == "0") {
+			this.homey.settings.set('pushovervalidation', validatedFailed);
+		}
+	}
+
+	// Create Insight log
+	createInsightlog() {
+
+		this.homey.insights.createLog('pushover_sendNotifications', {
+			label: {
+				en: 'Send Notifications'
+			},
+			type: 'number',
+			units: {
+				en: 'notifications'
+			},
+			decimals: 0
+		}).then(function (err) {
+			console.log("Log Created")
+		}).catch(function (err) {
+			console.log("Log Not created. " + err)
+		});
+	}
+
+	
 }
+
+
 
 // Send notification with parameters
 function pushoverSend(pUser, pToken, pMessage, pTitle, pPriority, pRetry, pExpire, pSound, image) {
@@ -234,62 +333,7 @@ function pushoverSend_device(pUser, pToken, pMessage, pTitle, pDevice, pPriority
 	return Promise.resolve()
 }
 
-// Create Insight log
-function createInsightlog() {
 
-	Homey.ManagerInsights.createLog('pushover_sendNotifications', {
-		label: {
-			en: 'Send Notifications'
-		},
-		type: 'number',
-		units: {
-			en: 'notifications'
-		},
-		decimals: 0
-	}).then(function (err){
-	console.log("Log Created")
-	}).catch(function (err)
-{
-	console.log("Log Not created. " + err)
-});
-}
-
-function buildPushoverArray() {
-	account = null;
-	account = Homey.ManagerSettings.get('pushoveraccount');
-
-	if (account != null) {
-		pushoverUser = account['user'];
-		pushoverGroup = account['group'];
-		pushoverToken = account['token'];
-		ledringPreference = account['ledring'];
-
-		let url = "https://api.pushover.net/1/users/validate.json";
-
-		http.post(url, 'token=' + pushoverToken + '&user=' + pushoverUser).then(function (result) {
-			if (result.response.statusCode == "200") {
-				request = JSON.parse(result.data);
-				devices = request.devices;
-				validation = request.status;
-
-				if (validation == "1") {
-					console.log("Pushover - Account validated successful");
-					console.log("Pushover - Listing devices: " + devices);
-					logValidation();
-				} else {
-					console.log("Pushover - User and/or Token key invalid");
-				}
-			} else if (result.response.statusCode == "400") {
-				console.log("Pushover - User and/or Token key invalid");
-				validation = "0";
-				logValidation();
-			}
-		});
-
-	} else {
-		console.log("Pushover - No account configured yet");
-	}
-}
 function searchForDevicesByValue ( value ) {
 	var possibleDevices = devices;
 	var tempItems = [];
@@ -304,14 +348,6 @@ function searchForDevicesByValue ( value ) {
 	return tempItems;
 }
 
-function logValidation() {
-	let validatedSuccess = "Validation successful"
-	let validatedFailed = "Validation failed, bad user/api key!"
-	if (validation == "1") {
-		Homey.ManagerSettings.set('pushovervalidation', validatedSuccess);
-	} else if (validation == "0") {
-		Homey.ManagerSettings.set('pushovervalidation', validatedFailed);
-	}
-}
+
 
 module.exports = MyApp;

@@ -1,6 +1,7 @@
 {
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.tonversteeg.pushover",
-  "sdk": 2,
+  "sdk": 3,
   "name": {
     "en": "Pushover Notifications",
     "nl": "Pushover Notificaties"
@@ -10,8 +11,8 @@
     "nl": "Pushover Notificaties met beeldondersteuning"
   },
   "category": "tools",
-  "version": "0.0.13",
-  "compatibility": ">=1.5.0",
+  "version": "1.0.0",
+  "compatibility": ">=8.0.0",
   "brandColor": "#249df1",
   "author": {
     "name": "Ton Versteeg",
@@ -22,7 +23,8 @@
     "small": "/assets/images/small.jpg"
   },
   "contributors": {
-    "developers": [{
+    "developers": [
+      {
         "name": "Ton Versteeg",
         "email": "tonversteeg1@gmail.com"
       },
@@ -38,29 +40,45 @@
       }
     ]
   },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "tonversteeg"
+      }
+    }
+  },
   "bugs": {
     "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
   },
-  "permissions": ["homey:manager:ledring"],
+  "permissions": [
+    "homey:manager:ledring"
+  ],
   "flow": {
-    "actions": [{
+    "actions": [
+      {
         "id": "pushoverSend",
         "title": {
           "en": "Pushover notification",
           "nl": "Pushover notificatie"
         },
+        "titleFormatted": {
+          "en": "Send message to [[target]] with [[title]] and [[message]] set [[priority]] set [[sound]] set [[retry]] set [[expire]]",
+          "nl": "Stuur bericht naar [[target]] met [[title]] als titel en [[message]] als bericht stel prioriteit in op [[priority]], en geluid [[sound]], noodtijd [[retry]], verlooptijd [[expire]]"
+        },
         "hint": {
           "en": "Send a Pushover notification to a User / Group.",
           "nl": "Stuur een pushover-notificatie naar een gebruiker / groep."
         },
-        "args": [{
+        "args": [
+          {
             "name": "target",
             "type": "dropdown",
             "title": {
               "en": "Target",
               "nl": "Doelwit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "User",
                 "label": {
                   "en": "User",
@@ -111,7 +129,8 @@
               "en": "Priority",
               "nl": "Prioriteit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -159,7 +178,8 @@
               "en": "Sound",
               "nl": "Geluid"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "device",
                 "label": {
                   "en": "Device Default",
@@ -329,6 +349,7 @@
           {
             "name": "retry",
             "type": "text",
+            "required": false,
             "title": {
               "en": "Emergency Retry Interval (seconds)",
               "nl": "Nood Notificatie Pogingen (seconden)"
@@ -341,316 +362,7 @@
           {
             "name": "expire",
             "type": "text",
-            "title": {
-              "en": "Emergency Retry Expiration (seconds)",
-              "nl": "Nood Notificatie Vervaltijd (seconden)"
-            },
-            "placeholder": {
-              "en": "Disabled: 0, Maximum: 10800",
-              "nl": "Uitgeschakeld: 0, Maximaal: 10800"
-            }
-          }
-        ]
-      },
-      {
-        "id": "pushoverSendImage",
-        "droptoken": "image",
-        "title": {
-          "en": "Pushover Image",
-          "nl": "Pushover Foto"
-        },
-        "hint": {
-          "en": "Send a Pushover notification with an image to a User / Group.",
-          "nl": "Stuur een pushover-notificatie met een afbeelding naar een gebruiker / groep."
-        },
-        "args": [{
-            "name": "target",
-            "type": "dropdown",
-            "title": {
-              "en": "Target",
-              "nl": "Doelwit"
-            },
-            "values": [{
-                "id": "User",
-                "label": {
-                  "en": "User",
-                  "nl": "Gebruiker"
-                }
-              },
-              {
-                "id": "Group",
-                "label": {
-                  "en": "Group",
-                  "nl": "Groep"
-                }
-              }
-            ],
-            "placeholder": {
-              "en": "User / Group",
-              "nl": "Gebruiker / Groep"
-            }
-          },
-          {
-            "name": "title",
-            "type": "text",
-            "title": {
-              "en": "Title",
-              "nl": "Titel"
-            },
-            "placeholder": {
-              "en": "Title",
-              "nl": "Titel"
-            }
-          },
-          {
-            "name": "message",
-            "type": "text",
-            "title": {
-              "en": "Message",
-              "nl": "Bericht"
-            },
-            "placeholder": {
-              "en": "Message",
-              "nl": "Bericht"
-            }
-          },
-          {
-            "name": "priority",
-            "type": "dropdown",
-            "title": {
-              "en": "Priority",
-              "nl": "Prioriteit"
-            },
-            "values": [{
-                "id": "Normal",
-                "label": {
-                  "en": "Normal",
-                  "nl": "Normaal"
-                }
-              },
-              {
-                "id": "Lowest",
-                "label": {
-                  "en": "Lowest",
-                  "nl": "Laagste"
-                }
-              },
-              {
-                "id": "Low",
-                "label": {
-                  "en": "Low",
-                  "nl": "Laag"
-                }
-              },
-              {
-                "id": "High",
-                "label": {
-                  "en": "High",
-                  "nl": "Hoog"
-                }
-              },
-              {
-                "id": "Emergency",
-                "label": {
-                  "en": "Emergency",
-                  "nl": "Nood"
-                }
-              }
-            ],
-            "placeholder": {
-              "en": "Priority",
-              "nl": "Prioriteit"
-            }
-          },
-          {
-            "name": "sound",
-            "type": "dropdown",
-            "title": {
-              "en": "Sound",
-              "nl": "Geluid"
-            },
-            "values": [{
-                "id": "device",
-                "label": {
-                  "en": "Device Default",
-                  "nl": "Apparaat Standaard"
-                }
-              },
-              {
-                "id": "pushover",
-                "label": {
-                  "en": "Pushover Default",
-                  "nl": "Pushover Standaard"
-                }
-              },
-              {
-                "id": "bike",
-                "label": {
-                  "en": "Bike",
-                  "nl": "Fiets"
-                }
-              },
-              {
-                "id": "bugle",
-                "label": {
-                  "en": "Bugle",
-                  "nl": "Hoorn"
-                }
-              },
-              {
-                "id": "cashregister",
-                "label": {
-                  "en": "Cash Register",
-                  "nl": "Kassa"
-                }
-              },
-              {
-                "id": "classical",
-                "label": {
-                  "en": "Classical",
-                  "nl": "Klassiek"
-                }
-              },
-              {
-                "id": "cosmic",
-                "label": {
-                  "en": "Cosmic",
-                  "nl": "Kosmisch"
-                }
-              },
-              {
-                "id": "falling",
-                "label": {
-                  "en": "Falling",
-                  "nl": "Vallend"
-                }
-              },
-              {
-                "id": "gamelan",
-                "label": {
-                  "en": "Gamelan",
-                  "nl": "Gamelan"
-                }
-              },
-              {
-                "id": "incoming",
-                "label": {
-                  "en": "Incoming",
-                  "nl": "Inkomend"
-                }
-              },
-              {
-                "id": "intermission",
-                "label": {
-                  "en": "Intermission",
-                  "nl": "Pauze"
-                }
-              },
-              {
-                "id": "magic",
-                "label": {
-                  "en": "Magic",
-                  "nl": "Magie"
-                }
-              },
-              {
-                "id": "mechanical",
-                "label": {
-                  "en": "Mechanical",
-                  "nl": "Mechanisch"
-                }
-              },
-              {
-                "id": "pianobar",
-                "label": {
-                  "en": "Pianobar",
-                  "nl": "Pianobar"
-                }
-              },
-              {
-                "id": "siren",
-                "label": {
-                  "en": "Siren",
-                  "nl": "Sirene"
-                }
-              },
-              {
-                "id": "spacealarm",
-                "label": {
-                  "en": "Space Alarm",
-                  "nl": "Ruimte Alarm"
-                }
-              },
-              {
-                "id": "tugboat",
-                "label": {
-                  "en": "Tug Boat",
-                  "nl": "Sleepboot"
-                }
-              },
-              {
-                "id": "alien",
-                "label": {
-                  "en": "Alien Alarm (long)",
-                  "nl": "Buitenaards Alarn (lang)"
-                }
-              },
-              {
-                "id": "climb",
-                "label": {
-                  "en": "Climb (long)",
-                  "nl": "Klim (Lang)"
-                }
-              },
-              {
-                "id": "persistent",
-                "label": {
-                  "en": "Persistent (long)",
-                  "nl": "Aanhoudend (lang)"
-                }
-              },
-              {
-                "id": "echo",
-                "label": {
-                  "en": "Echo (long)",
-                  "nl": "Echo (lang)"
-                }
-              },
-              {
-                "id": "updown",
-                "label": {
-                  "en": "Up Down (long)",
-                  "nl": "Op Neer (lang)"
-                }
-              },
-              {
-                "id": "none",
-                "label": {
-                  "en": "None (silent)",
-                  "nl": "Geen (stil)"
-                }
-              }
-            ],
-            "placeholder": {
-              "en": "Device Default",
-              "nl": "Apparaat Standaard"
-            }
-          },
-          {
-            "name": "retry",
-            "type": "text",
-            "title": {
-              "en": "Emergency Retry Interval (seconds)",
-              "nl": "Nood Notificatie Pogingen (seconden)"
-            },
-            "placeholder": {
-              "en": "Disabled: 0, Minimum: 30",
-              "nl": "Uitgeschakeld: 0, Minimaal: 30"
-            }
-          },
-          {
-            "name": "expire",
-            "type": "text",
+            "required": false,
             "title": {
               "en": "Emergency Retry Expiration (seconds)",
               "nl": "Nood Notificatie Vervaltijd (seconden)"
@@ -668,11 +380,16 @@
           "en": "Pushover notification (Device)",
           "nl": "Pushover notificatie (Apparaat)"
         },
+        "titleFormatted": {
+          "en": "Send message to device [[device]] with [[title]] and [[message]] set [[priority]] set [[sound]] set [[retry]] and set [[expire]]",
+          "nl": "Stuur bericht naar apparaat [[device]] met [[title]] en [[message]] stel [[priority]] in, stel [[sound]] in, stel [[retry]] in, stel [[expire]] in"
+        },
         "hint": {
           "en": "Send a Pushover notification to a specific device.",
           "nl": "Stuur een pushover-notificatie naar een specifiek apparaat."
         },
-        "args": [{
+        "args": [
+          {
             "name": "device",
             "type": "autocomplete",
             "title": {
@@ -715,7 +432,8 @@
               "en": "Priority",
               "nl": "Prioriteit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -763,7 +481,328 @@
               "en": "Sound",
               "nl": "Geluid"
             },
-            "values": [{
+            "values": [
+              {
+                "id": "device",
+                "label": {
+                  "en": "Device Default",
+                  "nl": "Apparaat Standaard"
+                }
+              },
+              {
+                "id": "pushover",
+                "label": {
+                  "en": "Pushover Default",
+                  "nl": "Pushover Standaard"
+                }
+              },
+              {
+                "id": "bike",
+                "label": {
+                  "en": "Bike",
+                  "nl": "Fiets"
+                }
+              },
+              {
+                "id": "bugle",
+                "label": {
+                  "en": "Bugle",
+                  "nl": "Hoorn"
+                }
+              },
+              {
+                "id": "cashregister",
+                "label": {
+                  "en": "Cash Register",
+                  "nl": "Kassa"
+                }
+              },
+              {
+                "id": "classical",
+                "label": {
+                  "en": "Classical",
+                  "nl": "Klassiek"
+                }
+              },
+              {
+                "id": "cosmic",
+                "label": {
+                  "en": "Cosmic",
+                  "nl": "Kosmisch"
+                }
+              },
+              {
+                "id": "falling",
+                "label": {
+                  "en": "Falling",
+                  "nl": "Vallend"
+                }
+              },
+              {
+                "id": "gamelan",
+                "label": {
+                  "en": "Gamelan",
+                  "nl": "Gamelan"
+                }
+              },
+              {
+                "id": "incoming",
+                "label": {
+                  "en": "Incoming",
+                  "nl": "Inkomend"
+                }
+              },
+              {
+                "id": "intermission",
+                "label": {
+                  "en": "Intermission",
+                  "nl": "Pauze"
+                }
+              },
+              {
+                "id": "magic",
+                "label": {
+                  "en": "Magic",
+                  "nl": "Magie"
+                }
+              },
+              {
+                "id": "mechanical",
+                "label": {
+                  "en": "Mechanical",
+                  "nl": "Mechanisch"
+                }
+              },
+              {
+                "id": "pianobar",
+                "label": {
+                  "en": "Pianobar",
+                  "nl": "Pianobar"
+                }
+              },
+              {
+                "id": "siren",
+                "label": {
+                  "en": "Siren",
+                  "nl": "Sirene"
+                }
+              },
+              {
+                "id": "spacealarm",
+                "label": {
+                  "en": "Space Alarm",
+                  "nl": "Ruimte Alarm"
+                }
+              },
+              {
+                "id": "tugboat",
+                "label": {
+                  "en": "Tug Boat",
+                  "nl": "Sleepboot"
+                }
+              },
+              {
+                "id": "alien",
+                "label": {
+                  "en": "Alien Alarm (long)",
+                  "nl": "Buitenaards Alarn (lang)"
+                }
+              },
+              {
+                "id": "climb",
+                "label": {
+                  "en": "Climb (long)",
+                  "nl": "Klim (Lang)"
+                }
+              },
+              {
+                "id": "persistent",
+                "label": {
+                  "en": "Persistent (long)",
+                  "nl": "Aanhoudend (lang)"
+                }
+              },
+              {
+                "id": "echo",
+                "label": {
+                  "en": "Echo (long)",
+                  "nl": "Echo (lang)"
+                }
+              },
+              {
+                "id": "updown",
+                "label": {
+                  "en": "Up Down (long)",
+                  "nl": "Op Neer (lang)"
+                }
+              },
+              {
+                "id": "none",
+                "label": {
+                  "en": "None (silent)",
+                  "nl": "Geen (stil)"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Device Default",
+              "nl": "Apparaat Standaard"
+            }
+          },
+          {
+            "name": "retry",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Emergency Retry Interval (seconds)",
+              "nl": "Nood Notificatie Pogingen (seconden)"
+            },
+            "placeholder": {
+              "en": "Disabled: 0, Minimum: 30",
+              "nl": "Uitgeschakeld: 0, Minimaal: 30"
+            }
+          },
+          {
+            "name": "expire",
+            "type": "text",
+            "required": false,
+            "title": {
+              "en": "Emergency Retry Expiration (seconds)",
+              "nl": "Nood Notificatie Vervaltijd (seconden)"
+            },
+            "placeholder": {
+              "en": "Disabled: 0, Maximum: 10800",
+              "nl": "Uitgeschakeld: 0, Maximaal: 10800"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pushoverSendImage",
+        "droptoken": "image",
+        "title": {
+          "en": "Pushover Image",
+          "nl": "Pushover Foto"
+        },
+        "titleFormatted": {
+          "en": "Send message with [[droptoken]] to [[target]] with [[title]] and [[message]] set [[priority]] set [[sound]] set [[retry]] set [[expire]]",
+          "nl": "Stuur bericht met [[droptoken]] naar [[target]] met [[title]] en [[message]], stel [[priority]] in, stel [[sound]] in, stel [[retry]] in, stel [[expire]] in"
+        },
+        "hint": {
+          "en": "Send a Pushover notification with an image to a User / Group.",
+          "nl": "Stuur een pushover-notificatie met een afbeelding naar een gebruiker / groep."
+        },
+        "args": [
+          {
+            "name": "target",
+            "type": "dropdown",
+            "title": {
+              "en": "Target",
+              "nl": "Doelwit"
+            },
+            "values": [
+              {
+                "id": "User",
+                "label": {
+                  "en": "User",
+                  "nl": "Gebruiker"
+                }
+              },
+              {
+                "id": "Group",
+                "label": {
+                  "en": "Group",
+                  "nl": "Groep"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "User / Group",
+              "nl": "Gebruiker / Groep"
+            }
+          },
+          {
+            "name": "title",
+            "type": "text",
+            "title": {
+              "en": "Title",
+              "nl": "Titel"
+            },
+            "placeholder": {
+              "en": "Title",
+              "nl": "Titel"
+            }
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "title": {
+              "en": "Message",
+              "nl": "Bericht"
+            },
+            "placeholder": {
+              "en": "Message",
+              "nl": "Bericht"
+            }
+          },
+          {
+            "name": "priority",
+            "type": "dropdown",
+            "title": {
+              "en": "Priority",
+              "nl": "Prioriteit"
+            },
+            "values": [
+              {
+                "id": "Normal",
+                "label": {
+                  "en": "Normal",
+                  "nl": "Normaal"
+                }
+              },
+              {
+                "id": "Lowest",
+                "label": {
+                  "en": "Lowest",
+                  "nl": "Laagste"
+                }
+              },
+              {
+                "id": "Low",
+                "label": {
+                  "en": "Low",
+                  "nl": "Laag"
+                }
+              },
+              {
+                "id": "High",
+                "label": {
+                  "en": "High",
+                  "nl": "Hoog"
+                }
+              },
+              {
+                "id": "Emergency",
+                "label": {
+                  "en": "Emergency",
+                  "nl": "Nood"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Priority",
+              "nl": "Prioriteit"
+            }
+          },
+          {
+            "name": "sound",
+            "type": "dropdown",
+            "title": {
+              "en": "Sound",
+              "nl": "Geluid"
+            },
+            "values": [
+              {
                 "id": "device",
                 "label": {
                   "en": "Device Default",
