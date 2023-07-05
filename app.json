@@ -1,6 +1,6 @@
 {
   "id": "nl.tonversteeg.pushover",
-  "sdk": 2,
+  "sdk": 3,
   "name": {
     "en": "Pushover Notifications",
     "nl": "Pushover Notificaties"
@@ -11,7 +11,7 @@
   },
   "category": "tools",
   "version": "0.0.13",
-  "compatibility": ">=1.5.0",
+  "compatibility": ">=5.0.0",
   "brandColor": "#249df1",
   "author": {
     "name": "Ton Versteeg",
@@ -22,7 +22,8 @@
     "small": "/assets/images/small.jpg"
   },
   "contributors": {
-    "developers": [{
+    "developers": [
+      {
         "name": "Ton Versteeg",
         "email": "tonversteeg1@gmail.com"
       },
@@ -35,15 +36,22 @@
       },
       {
         "name": "Veldkornet"
+      },
+      {
+        "name": "Stephan Eizinga",
+        "email": "stephan@monkeysoft.nl"
       }
     ]
   },
   "bugs": {
     "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
   },
-  "permissions": ["homey:manager:ledring"],
+  "permissions": [
+    "homey:manager:ledring"
+  ],
   "flow": {
-    "actions": [{
+    "actions": [
+      {
         "id": "pushoverSend",
         "title": {
           "en": "Pushover notification",
@@ -53,14 +61,16 @@
           "en": "Send a Pushover notification to a User / Group.",
           "nl": "Stuur een pushover-notificatie naar een gebruiker / groep."
         },
-        "args": [{
+        "args": [
+          {
             "name": "target",
             "type": "dropdown",
             "title": {
               "en": "Target",
               "nl": "Doelwit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "User",
                 "label": {
                   "en": "User",
@@ -111,7 +121,8 @@
               "en": "Priority",
               "nl": "Prioriteit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -159,7 +170,8 @@
               "en": "Sound",
               "nl": "Geluid"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "device",
                 "label": {
                   "en": "Device Default",
@@ -363,14 +375,16 @@
           "en": "Send a Pushover notification with an image to a User / Group.",
           "nl": "Stuur een pushover-notificatie met een afbeelding naar een gebruiker / groep."
         },
-        "args": [{
+        "args": [
+          {
             "name": "target",
             "type": "dropdown",
             "title": {
               "en": "Target",
               "nl": "Doelwit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "User",
                 "label": {
                   "en": "User",
@@ -421,7 +435,8 @@
               "en": "Priority",
               "nl": "Prioriteit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -469,7 +484,8 @@
               "en": "Sound",
               "nl": "Geluid"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "device",
                 "label": {
                   "en": "Device Default",
@@ -672,7 +688,8 @@
           "en": "Send a Pushover notification to a specific device.",
           "nl": "Stuur een pushover-notificatie naar een specifiek apparaat."
         },
-        "args": [{
+        "args": [
+          {
             "name": "device",
             "type": "autocomplete",
             "title": {
@@ -715,7 +732,8 @@
               "en": "Priority",
               "nl": "Prioriteit"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "Normal",
                 "label": {
                   "en": "Normal",
@@ -763,7 +781,8 @@
               "en": "Sound",
               "nl": "Geluid"
             },
-            "values": [{
+            "values": [
+              {
                 "id": "device",
                 "label": {
                   "en": "Device Default",
