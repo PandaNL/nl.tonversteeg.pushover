@@ -1,0 +1,297 @@
+{
+  "id": "pushoverSend_device",
+  "title": {
+    "en": "Pushover notification (Device)",
+    "nl": "Pushover notificatie (Apparaat)"
+  },
+  "hint": {
+    "en": "Send a Pushover notification to a specific device.",
+    "nl": "Stuur een pushover-notificatie naar een specifiek apparaat."
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "autocomplete",
+      "title": {
+        "en": "Target",
+        "nl": "Doelwit"
+      },
+      "placeholder": {
+        "en": "Device name",
+        "nl": "Apparaat naam"
+      }
+    },
+    {
+      "name": "title",
+      "type": "text",
+      "title": {
+        "en": "Title",
+        "nl": "Titel"
+      },
+      "placeholder": {
+        "en": "Title",
+        "nl": "Titel"
+      }
+    },
+    {
+      "name": "message",
+      "type": "text",
+      "title": {
+        "en": "Message",
+        "nl": "Bericht"
+      },
+      "placeholder": {
+        "en": "Message",
+        "nl": "Bericht"
+      }
+    },
+    {
+      "name": "priority",
+      "type": "dropdown",
+      "title": {
+        "en": "Priority",
+        "nl": "Prioriteit"
+      },
+      "values": [
+        {
+          "id": "Normal",
+          "label": {
+            "en": "Normal",
+            "nl": "Normaal"
+          }
+        },
+        {
+          "id": "Lowest",
+          "label": {
+            "en": "Lowest",
+            "nl": "Laagste"
+          }
+        },
+        {
+          "id": "Low",
+          "label": {
+            "en": "Low",
+            "nl": "Laag"
+          }
+        },
+        {
+          "id": "High",
+          "label": {
+            "en": "High",
+            "nl": "Hoog"
+          }
+        },
+        {
+          "id": "Emergency",
+          "label": {
+            "en": "Emergency",
+            "nl": "Nood"
+          }
+        }
+      ],
+      "placeholder": {
+        "en": "Priority",
+        "nl": "Prioriteit"
+      }
+    },
+    {
+      "name": "sound",
+      "type": "dropdown",
+      "title": {
+        "en": "Sound",
+        "nl": "Geluid"
+      },
+      "values": [
+        {
+          "id": "device",
+          "label": {
+            "en": "Device Default",
+            "nl": "Apparaat Standaard"
+          }
+        },
+        {
+          "id": "pushover",
+          "label": {
+            "en": "Pushover Default",
+            "nl": "Pushover Standaard"
+          }
+        },
+        {
+          "id": "bike",
+          "label": {
+            "en": "Bike",
+            "nl": "Fiets"
+          }
+        },
+        {
+          "id": "bugle",
+          "label": {
+            "en": "Bugle",
+            "nl": "Hoorn"
+          }
+        },
+        {
+          "id": "cashregister",
+          "label": {
+            "en": "Cash Register",
+            "nl": "Kassa"
+          }
+        },
+        {
+          "id": "classical",
+          "label": {
+            "en": "Classical",
+            "nl": "Klassiek"
+          }
+        },
+        {
+          "id": "cosmic",
+          "label": {
+            "en": "Cosmic",
+            "nl": "Kosmisch"
+          }
+        },
+        {
+          "id": "falling",
+          "label": {
+            "en": "Falling",
+            "nl": "Vallend"
+          }
+        },
+        {
+          "id": "gamelan",
+          "label": {
+            "en": "Gamelan",
+            "nl": "Gamelan"
+          }
+        },
+        {
+          "id": "incoming",
+          "label": {
+            "en": "Incoming",
+            "nl": "Inkomend"
+          }
+        },
+        {
+          "id": "intermission",
+          "label": {
+            "en": "Intermission",
+            "nl": "Pauze"
+          }
+        },
+        {
+          "id": "magic",
+          "label": {
+            "en": "Magic",
+            "nl": "Magie"
+          }
+        },
+        {
+          "id": "mechanical",
+          "label": {
+            "en": "Mechanical",
+            "nl": "Mechanisch"
+          }
+        },
+        {
+          "id": "pianobar",
+          "label": {
+            "en": "Pianobar",
+            "nl": "Pianobar"
+          }
+        },
+        {
+          "id": "siren",
+          "label": {
+            "en": "Siren",
+            "nl": "Sirene"
+          }
+        },
+        {
+          "id": "spacealarm",
+          "label": {
+            "en": "Space Alarm",
+            "nl": "Ruimte Alarm"
+          }
+        },
+        {
+          "id": "tugboat",
+          "label": {
+            "en": "Tug Boat",
+            "nl": "Sleepboot"
+          }
+        },
+        {
+          "id": "alien",
+          "label": {
+            "en": "Alien Alarm (long)",
+            "nl": "Buitenaards Alarn (lang)"
+          }
+        },
+        {
+          "id": "climb",
+          "label": {
+            "en": "Climb (long)",
+            "nl": "Klim (Lang)"
+          }
+        },
+        {
+          "id": "persistent",
+          "label": {
+            "en": "Persistent (long)",
+            "nl": "Aanhoudend (lang)"
+          }
+        },
+        {
+          "id": "echo",
+          "label": {
+            "en": "Echo (long)",
+            "nl": "Echo (lang)"
+          }
+        },
+        {
+          "id": "updown",
+          "label": {
+            "en": "Up Down (long)",
+            "nl": "Op Neer (lang)"
+          }
+        },
+        {
+          "id": "none",
+          "label": {
+            "en": "None (silent)",
+            "nl": "Geen (stil)"
+          }
+        }
+      ],
+      "placeholder": {
+        "en": "Device Default",
+        "nl": "Apparaat Standaard"
+      }
+    },
+    {
+      "name": "retry",
+      "type": "text",
+      "title": {
+        "en": "Emergency Retry Interval (seconds)",
+        "nl": "Nood Notificatie Pogingen (seconden)"
+      },
+      "placeholder": {
+        "en": "Disabled: 0, Minimum: 30",
+        "nl": "Uitgeschakeld: 0, Minimaal: 30"
+      }
+    },
+    {
+      "name": "expire",
+      "type": "text",
+      "title": {
+        "en": "Emergency Retry Expiration (seconds)",
+        "nl": "Nood Notificatie Vervaltijd (seconden)"
+      },
+      "placeholder": {
+        "en": "Disabled: 0, Maximum: 10800",
+        "nl": "Uitgeschakeld: 0, Maximaal: 10800"
+      }
+    }
+  ]
+}

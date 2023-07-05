@@ -1,0 +1,52 @@
+{
+  "id": "nl.tonversteeg.pushover",
+  "sdk": 3,
+  "name": {
+    "en": "Pushover Notifications",
+    "nl": "Pushover Notificaties"
+  },
+  "description": {
+    "en": "Pushover Notification with Image support",
+    "nl": "Pushover Notificaties met beeldondersteuning"
+  },
+  "category": "tools",
+  "version": "0.0.13",
+  "compatibility": ">=5.0.0",
+  "brandColor": "#249df1",
+  "author": {
+    "name": "Ton Versteeg",
+    "email": "tonversteeg1@gmail.com"
+  },
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Ton Versteeg",
+        "email": "tonversteeg1@gmail.com"
+      },
+      {
+        "name": "Kevin Traa",
+        "email": "ketra90@gmail.com"
+      },
+      {
+        "name": "Dannzak"
+      },
+      {
+        "name": "Veldkornet"
+      },
+      {
+        "name": "Stephan Eizinga",
+        "email": "stephan@monkeysoft.nl"
+      }
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/PandaNL/nl.tonversteeg.pushover/issues"
+  },
+  "permissions": [
+    "homey:manager:ledring"
+  ]
+}

@@ -1,4 +1,5 @@
 {
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.tonversteeg.pushover",
   "sdk": 3,
   "name": {
@@ -365,43 +366,26 @@
         ]
       },
       {
-        "id": "pushoverSendImage",
-        "droptoken": "image",
+        "id": "pushoverSend_device",
         "title": {
-          "en": "Pushover Image",
-          "nl": "Pushover Foto"
+          "en": "Pushover notification (Device)",
+          "nl": "Pushover notificatie (Apparaat)"
         },
         "hint": {
-          "en": "Send a Pushover notification with an image to a User / Group.",
-          "nl": "Stuur een pushover-notificatie met een afbeelding naar een gebruiker / groep."
+          "en": "Send a Pushover notification to a specific device.",
+          "nl": "Stuur een pushover-notificatie naar een specifiek apparaat."
         },
         "args": [
           {
-            "name": "target",
-            "type": "dropdown",
+            "name": "device",
+            "type": "autocomplete",
             "title": {
               "en": "Target",
               "nl": "Doelwit"
             },
-            "values": [
-              {
-                "id": "User",
-                "label": {
-                  "en": "User",
-                  "nl": "Gebruiker"
-                }
-              },
-              {
-                "id": "Group",
-                "label": {
-                  "en": "Group",
-                  "nl": "Groep"
-                }
-              }
-            ],
             "placeholder": {
-              "en": "User / Group",
-              "nl": "Gebruiker / Groep"
+              "en": "Device name",
+              "nl": "Apparaat naam"
             }
           },
           {
@@ -679,26 +663,43 @@
         ]
       },
       {
-        "id": "pushoverSend_device",
+        "id": "pushoverSendImage",
+        "droptoken": "image",
         "title": {
-          "en": "Pushover notification (Device)",
-          "nl": "Pushover notificatie (Apparaat)"
+          "en": "Pushover Image",
+          "nl": "Pushover Foto"
         },
         "hint": {
-          "en": "Send a Pushover notification to a specific device.",
-          "nl": "Stuur een pushover-notificatie naar een specifiek apparaat."
+          "en": "Send a Pushover notification with an image to a User / Group.",
+          "nl": "Stuur een pushover-notificatie met een afbeelding naar een gebruiker / groep."
         },
         "args": [
           {
-            "name": "device",
-            "type": "autocomplete",
+            "name": "target",
+            "type": "dropdown",
             "title": {
               "en": "Target",
               "nl": "Doelwit"
             },
+            "values": [
+              {
+                "id": "User",
+                "label": {
+                  "en": "User",
+                  "nl": "Gebruiker"
+                }
+              },
+              {
+                "id": "Group",
+                "label": {
+                  "en": "Group",
+                  "nl": "Groep"
+                }
+              }
+            ],
             "placeholder": {
-              "en": "Device name",
-              "nl": "Apparaat naam"
+              "en": "User / Group",
+              "nl": "Gebruiker / Groep"
             }
           },
           {
